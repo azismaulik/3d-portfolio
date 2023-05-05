@@ -13,7 +13,7 @@ const Navbar = () => {
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.scrollY;
-      if (scrollTop > 100) {
+      if (scrollTop > 70) {
         setScrolled(true);
       } else {
         setScrolled(false);
@@ -44,8 +44,7 @@ const Navbar = () => {
         >
           <img src={logo} alt="logo" className="w-12 h-12 object-contain" />
           <p className="text-white text-[18px] font-bold cursor-pointer flex ">
-            Azis &nbsp;
-            <span className="sm:block hidden"> Maulana Malik</span>
+            Azis Maulana Malik
           </p>
         </Link>
 

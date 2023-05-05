@@ -1,74 +1,44 @@
-// import React from "react";
-// import Tilt from "react-tilt";
-// import { motion } from "framer-motion";
-
-// import { styles } from "../styles";
-// import { services } from "../constants";
-// import { SectionWrapper } from "../hoc";
-// import { fadeIn, textVariant } from "../utils/motion";
-
-// const ServiceCard = ({ index, title, icon }) => (
-//   <Tilt className="xs:w-[250px] w-full">
-//     <motion.div
-//       variants={fadeIn("right", "spring", index * 0.5, 0.75)}
-//       className="w-full green-pink-gradient p-[1px] rounded-[20px] shadow-card"
-//     >
-//       <div
-//         options={{
-//           max: 45,
-//           scale: 1,
-//           speed: 450,
-//         }}
-//         className="bg-tertiary rounded-[20px] py-5 px-12 min-h-[280px] flex justify-evenly items-center flex-col"
-//       >
-//         <img
-//           src={icon}
-//           alt="web-development"
-//           className="w-16 h-16 object-contain"
-//         />
-
-//         <h3 className="text-white text-[20px] font-bold text-center">
-//           {title}
-//         </h3>
-//       </div>
-//     </motion.div>
-//   </Tilt>
-// );
-
-// const About = () => {
-//   return (
-//     <>
-//       <motion.div variants={textVariant()}>
-//         <p className={styles.sectionSubText}>Introduction</p>
-//         <h2 className={styles.sectionHeadText}>Overview.</h2>
-//       </motion.div>
-
-//       <motion.p
-//         variants={fadeIn("", "", 0.1, 1)}
-//         className="mt-4 text-secondary text-[17px] max-w-3xl leading-[30px]"
-//       >
-//         I'm a skilled software developer with experience in TypeScript and
-//         JavaScript, and expertise in frameworks like React, Node.js, and
-//         Three.js. I'm a quick learner and collaborate closely with clients to
-//         create efficient, scalable, and user-friendly solutions that solve
-//         real-world problems. Let's work together to bring your ideas to life!
-//       </motion.p>
-
-//       <div className="mt-20 flex flex-wrap gap-10">
-//         {services.map((service, index) => (
-//           <ServiceCard key={service.title} index={index} {...service} />
-//         ))}
-//       </div>
-//     </>
-//   );
-// };
-
-// export default SectionWrapper(About, "about");
-
 import React from "react";
+import { motion } from "framer-motion";
+
+import { styles } from "../styles";
+import { services } from "../constants";
+import { fadeIn, textVariant } from "../utils/motion";
 
 const About = () => {
-  return <div>about</div>;
+  return (
+    <section id="about">
+      <div className="max-w-[1200px] mx-auto p-8 xl:p-0">
+        <motion.div variants={textVariant()}>
+          <p className={styles.sectionSubText}>Introduction</p>
+          <h2 className={styles.sectionHeadText}>Overview.</h2>
+        </motion.div>
+
+        <motion.p
+          variants={fadeIn("", "", 0.1, 1)}
+          className="mt-4 text-secondary text-[17px] max-w-3xl leading-[30px]"
+        >
+          I'm a skilled Web developer with experience in JavaScript, and
+          expertise in frameworks like React.js and vue.js. I'm a quick learner
+          and collaborate closely with clients to create efficient, scalable,
+          and user-friendly solutions that solve real-world problems. Let's work
+          together to bring your ideas to life!
+        </motion.p>
+
+        <div className="mt-10 md:mt-20 flex flex-wrap gap-10 justify-center sm:justify-start">
+          {services.map((service, index) => (
+            <div
+              key={index}
+              className="rounded-lg bg-[#1d1836] gap-2 p-2 flex flex-col justify-center items-center w-40 h-40 border border-secondary"
+            >
+              <img className="w-14" src={service.icon} alt="" />
+              <h1 className="text-center text-sm">{service.title}</h1>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
 };
 
 export default About;
