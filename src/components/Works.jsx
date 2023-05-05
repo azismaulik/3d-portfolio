@@ -8,7 +8,7 @@ import { fadeIn, textVariant } from "../utils/motion";
 
 const Works = () => {
   return (
-    <div className="max-w-[1200px] mx-auto p-8 xl:p-0 mt-20">
+    <div className="max-w-[1150px] mx-auto p-8 xl:p-0 mt-20">
       <motion.div variants={textVariant()}>
         <p className={`${styles.sectionSubText} `}>My work</p>
         <h2 className={`${styles.sectionHeadText}`}>Projects.</h2>
