@@ -1,14 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 
 import { styles } from "../styles";
-import { github } from "../assets";
 import { projects } from "../constants";
 import { fadeIn, textVariant } from "../utils/motion";
 
 const Works = () => {
+  const [tampil, setTampil] = useState(3);
+  const [isTampil, setIsTampil] = useState(false);
+
+  const handleBtn = () => {
+    setTampil(tampil == 3 ? 5 : 3);
+    setIsTampil(!isTampil);
+  };
+
   return (
-    <div className="max-w-[1150px] mx-auto p-8 xl:p-0 mt-20">
+    <div id="projects" className="max-w-[1150px] mx-auto p-8 xl:p-0 mt-20">
       <motion.div variants={textVariant()}>
         <p className={`${styles.sectionSubText} `}>My work</p>
         <h2 className={`${styles.sectionHeadText}`}>Projects.</h2>
@@ -27,18 +34,23 @@ const Works = () => {
         </motion.p>
       </div>
 
-      <div className="mt-20 flex flex-wrap gap-7">
-        {projects.map((project, index) => (
-          <div
+      <div className="mt-20 flex flex-wrap justify-center gap-7">
+        {projects.slice(0, tampil).map((project, index) => (
+          <motion.div
+            variants={fadeIn("", "spring", index * 0.5, 0.75)}
             key={index}
             className="p-6 w-full sm:w-80 bg-[#150F30] rounded-xl"
           >
-            <img
-              className="rounded-lg h-48 w-full object-fill"
-              src={project.image}
-              alt=""
-            />
-            <h1 className="mt-6 text-xl font-semibold">{project.name}</h1>
+            <a target="_blank" href={project.link}>
+              <img
+                className="rounded-lg h-48 w-full object-fill hover:scale-105 transition"
+                src={project.image}
+                alt=""
+              />
+            </a>
+            <a target="_blank" href={project.link}>
+              <h1 className="mt-6 text-xl font-semibold">{project.name}</h1>
+            </a>
             <p className="mt-2 text-sm text-gray-300 leading-6">
               {project.description}
             </p>
@@ -49,8 +61,16 @@ const Works = () => {
                 </p>
               ))}
             </div>
-          </div>
+          </motion.div>
         ))}
+      </div>
+      <div className="flex justify-center items-center mt-8">
+        <button
+          onClick={handleBtn}
+          className="cursor-pointer py-2 px-6 rounded-md border border-secondary/25 bg-[#150F30] text-sm"
+        >
+          {isTampil ? "Hide" : "View All"}
+        </button>
       </div>
     </div>
   );

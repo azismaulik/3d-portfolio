@@ -11,6 +11,7 @@ import {
   Works,
   StarsCanvas,
 } from "./components";
+import ToTop from "./components/ToTop";
 
 const App = () => {
   return (
@@ -30,6 +31,7 @@ const App = () => {
           <StarsCanvas />
         </div>
       </div>
+      <ToTop />
     </BrowserRouter>
   );
 };

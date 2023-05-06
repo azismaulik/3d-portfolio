@@ -3,9 +3,12 @@ import backend from "./backend.png";
 import creator from "./creator.png";
 import mobile from "./mobile.png";
 import web from "./web.png";
-import github from "./github.png";
 import menu from "./menu.svg";
 import close from "./close.svg";
+
+import github from "./social/github.png";
+import linkedin from "./social/linkedin.png";
+import instagram from "./social/instagram.png";
 
 import css from "./tech/css.png";
 import docker from "./tech/docker.png";
@@ -29,6 +32,13 @@ import tesla from "./company/tesla.png";
 import carrent from "./carrent.png";
 import jobit from "./jobit.png";
 import tripguide from "./tripguide.png";
+import dashboard from "./dashboard.png";
+import metaverse from "./metaverse.png";
+import moviesApp from "./movies-app.png";
+import newsApp from "./news-app.png";
+import quranApp from "./quran-app.png";
+
+import toTop from "./to-top.png";
 
 export {
   logo,
@@ -59,4 +69,12 @@ export {
   carrent,
   jobit,
   tripguide,
+  toTop,
+  dashboard,
+  metaverse,
+  moviesApp,
+  newsApp,
+  quranApp,
+  instagram,
+  linkedin,
 };

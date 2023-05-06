@@ -23,6 +23,14 @@ import {
   jobit,
   tripguide,
   threejs,
+  dashboard,
+  metaverse,
+  moviesApp,
+  newsApp,
+  quranApp,
+  instagram,
+  github,
+  linkedin,
 } from "../assets";
 
 export const navLinks = [
@@ -33,6 +41,10 @@ export const navLinks = [
   {
     id: "work",
     title: "Work",
+  },
+  {
+    id: "projects",
+    title: "projects",
   },
   {
     id: "contact",
@@ -53,10 +65,10 @@ const services = [
     title: "UI/UX Designer",
     icon: backend,
   },
-  {
-    title: "Content Creator",
-    icon: creator,
-  },
+  // {
+  //   title: "Content Creator",
+  //   icon: creator,
+  // },
 ];
 
 const technologies = [
@@ -198,7 +210,7 @@ const testimonials = [
 
 const projects = [
   {
-    name: "Car Rent",
+    name: "Metaverse Template UI",
     description:
       "Web-based platform that allows users to search, book, and manage car rentals from various providers, providing a convenient and efficient solution for transportation needs.",
     tags: [
@@ -207,19 +219,19 @@ const projects = [
         color: "blue-text-gradient",
       },
       {
-        name: "mongodb",
+        name: "tailwind",
         color: "green-text-gradient",
       },
       {
-        name: "tailwind",
+        name: "slicing",
         color: "pink-text-gradient",
       },
     ],
-    image: carrent,
-    source_code_link: "https://github.com/",
+    image: metaverse,
+    link: "https://metaverse-pink-mu.vercel.app/",
   },
   {
-    name: "Job IT",
+    name: "Movies Website",
     description:
       "Web application that enables users to search for job openings, view estimated salary ranges for positions, and locate available jobs based on their current location.",
     tags: [
@@ -232,15 +244,15 @@ const projects = [
         color: "green-text-gradient",
       },
       {
-        name: "scss",
+        name: "tailwind",
         color: "pink-text-gradient",
       },
     ],
-    image: jobit,
-    source_code_link: "https://github.com/",
+    image: moviesApp,
+    link: "https://movies-lyart-five.vercel.app/",
   },
   {
-    name: "Trip Guide",
+    name: "News Website",
     description:
       "A comprehensive travel booking platform that allows users to book flights, hotels, and rental cars, and offers curated recommendations for popular destinations.",
     tags: [
@@ -249,17 +261,74 @@ const projects = [
         color: "blue-text-gradient",
       },
       {
-        name: "supabase",
+        name: "restapi",
         color: "green-text-gradient",
       },
       {
-        name: "css",
+        name: "tailwind",
         color: "pink-text-gradient",
       },
     ],
-    image: tripguide,
-    source_code_link: "https://github.com/",
+    image: newsApp,
+    link: "https://news-app-azure-two.vercel.app/",
+  },
+  {
+    name: "Dashboard Template UI",
+    description:
+      "A comprehensive travel booking platform that allows users to book flights, hotels, and rental cars, and offers curated recommendations for popular destinations.",
+    tags: [
+      {
+        name: "react",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "tailwind",
+        color: "green-text-gradient",
+      },
+      {
+        name: "slicing",
+        color: "pink-text-gradient",
+      },
+    ],
+    image: dashboard,
+    link: "https://dashboard-moneyheist.vercel.app/",
+  },
+  {
+    name: "Quran App",
+    description:
+      "A comprehensive travel booking platform that allows users to book flights, hotels, and rental cars, and offers curated recommendations for popular destinations.",
+    tags: [
+      {
+        name: "nextjs",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "restapi",
+        color: "green-text-gradient",
+      },
+      {
+        name: "tailwind",
+        color: "pink-text-gradient",
+      },
+    ],
+    image: quranApp,
+    link: "https://quran-app-mocha.vercel.app/",
   },
 ];
 
-export { services, technologies, experiences, testimonials, projects };
+const socials = [
+  {
+    img: github,
+    link: "https://instagram.com/azissmm_",
+  },
+  {
+    img: instagram,
+    link: "https://instagram.com/azissmm_",
+  },
+  {
+    img: linkedin,
+    link: "https://instagram.com/azissmm_",
+  },
+];
+
+export { services, technologies, experiences, testimonials, projects, socials };

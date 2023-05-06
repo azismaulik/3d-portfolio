@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-
+import ReactTypingEffect from "react-typing-effect";
 import { styles } from "../styles";
 import { ComputersCanvas } from "./canvas";
 
@@ -14,14 +14,26 @@ const Hero = () => {
           <div className="w-1 sm:h-80 h-40 violet-gradient" />
         </div>
 
-        <div>
+        <div className="mt-8">
           <h1 className={`${styles.heroHeadText} text-white`}>
             Hi, I'm <span className="text-[#A437DB]">Azis</span>
           </h1>
-          <p className={`${styles.heroSubText} mt-2 text-white-100`}>
+          {/* <p className={`${styles.heroSubText} mt-2 text-white-100`}>
             I Frontend developer and <br />
             UI/UX Designer
-          </p>
+          </p> */}
+          <h1 className="inline md:text-xl font-semibold">and I'm a </h1>
+          <ReactTypingEffect
+            speed={100}
+            eraseDelay={1000}
+            eraseSpeed={100}
+            typingDelay={100}
+            className="text-xl sm:font-semibold text-[#A437DB]"
+            text={["Frontend developer", "UI / UX Designer"]}
+          />
+          {/* <button className="cursor-pointer py-2 px-6 w-40 rounded-md border border-secondary/25 bg-[#A437DB] text-sm block mt-8">
+            hubungi
+          </button> */}
         </div>
       </div>
 

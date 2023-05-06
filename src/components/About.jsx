@@ -2,7 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 
 import { styles } from "../styles";
-import { services } from "../constants";
+import { services, socials } from "../constants";
 import { fadeIn, textVariant } from "../utils/motion";
 
 const About = () => {
@@ -25,7 +25,19 @@ const About = () => {
           together to bring your ideas to life!
         </motion.p>
 
-        <div className="mt-10 md:mt-20 flex flex-wrap gap-10 justify-center sm:justify-start">
+        <div className="flex gap-8 mt-8">
+          {socials.map((social, index) => (
+            <a key={index} href={social.link} target="_blank">
+              <img
+                src={social.img}
+                alt=""
+                className="object-cover w-10 hover:scale-125 transition"
+              />
+            </a>
+          ))}
+        </div>
+
+        <div className="mt-6 md:mt-10 flex flex-wrap gap-10">
           {services.map((service, index) => (
             <div
               key={index}
