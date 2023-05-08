@@ -4,11 +4,12 @@ import { motion } from "framer-motion";
 import { styles } from "../styles";
 import { services, socials } from "../constants";
 import { fadeIn, textVariant } from "../utils/motion";
+import { SectionWrapper } from "../hoc";
 
 const About = () => {
   return (
     <section id="about">
-      <div className="max-w-[1150px] mx-auto p-8 xl:p-0">
+      <div className="p-8 xl:p-0">
         <motion.div variants={textVariant()}>
           <p className={styles.sectionSubText}>Introduction</p>
           <h2 className={styles.sectionHeadText}>Overview.</h2>
@@ -16,7 +17,7 @@ const About = () => {
 
         <motion.p
           variants={fadeIn("", "", 0.1, 1)}
-          className="mt-4 text-secondary text-[17px] max-w-3xl leading-[30px]"
+          className="mt-4 text-secondary text-[17px] max-w-5xl leading-[30px]"
         >
           I'm a skilled Web developer with experience in JavaScript or
           Wordpress, and expertise in frameworks like React.js and vue.js. And
@@ -54,4 +55,4 @@ const About = () => {
   );
 };
 
-export default About;
+export default SectionWrapper(About, 'about');
