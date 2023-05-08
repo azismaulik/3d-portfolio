@@ -29,7 +29,7 @@ const Hero = () => {
             eraseSpeed={100}
             typingDelay={100}
             className="text-xl sm:font-semibold text-[#A437DB]"
-            text={["Frontend developer", "UI / UX Designer"]}
+            text={["Web developer", "UI / UX Designer"]}
           />
           {/* <button className="cursor-pointer py-2 px-6 w-40 rounded-md border border-secondary/25 bg-[#A437DB] text-sm block mt-8">
             hubungi

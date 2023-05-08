@@ -31,6 +31,8 @@ import {
   instagram,
   github,
   linkedin,
+  elementor,
+  wordpress,
 } from "../assets";
 
 export const navLinks = [
@@ -112,6 +114,14 @@ const technologies = [
   //   name: "Three JS",
   //   icon: threejs,
   // },
+  {
+    name: "wordpress",
+    icon: wordpress,
+  },
+  {
+    name: "elementor",
+    icon: elementor,
+  },
   {
     name: "git",
     icon: git,

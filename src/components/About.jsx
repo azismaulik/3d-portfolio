@@ -18,11 +18,12 @@ const About = () => {
           variants={fadeIn("", "", 0.1, 1)}
           className="mt-4 text-secondary text-[17px] max-w-3xl leading-[30px]"
         >
-          I'm a skilled Web developer with experience in JavaScript, and
-          expertise in frameworks like React.js and vue.js. I'm a quick learner
-          and collaborate closely with clients to create efficient, scalable,
-          and user-friendly solutions that solve real-world problems. Let's work
-          together to bring your ideas to life!
+          I'm a skilled Web developer with experience in JavaScript or
+          Wordpress, and expertise in frameworks like React.js and vue.js. And
+          also i do UI / UX using figma. I'm a quick learner and collaborate
+          closely with clients to create efficient, scalable, and user-friendly
+          solutions that solve real-world problems. Let's work together to bring
+          your ideas to life!
         </motion.p>
 
         <div className="flex gap-8 mt-8">
