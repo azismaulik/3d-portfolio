@@ -341,4 +341,14 @@ const socials = [
   },
 ];
 
+// const blogs = [
+//   {
+//     name: "How to write a blog post",
+//     description: "",
+//     tags: [],
+//     image: blog,
+//     link: "https://www.notion.so/How-to-write-a-blog-post-ee0ee0ee0e0e4e0b0e0e0e0",
+//   },
+// ];
+
 export { services, technologies, experiences, testimonials, projects, socials };

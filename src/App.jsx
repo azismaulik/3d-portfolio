@@ -1,4 +1,4 @@
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import {
   About,
@@ -10,27 +10,37 @@ import {
   Tech,
   Works,
   StarsCanvas,
+  ToTop,
 } from "./components";
-import ToTop from "./components/ToTop";
+import Blog from "./pages/Blog";
 
 const App = () => {
   return (
     <BrowserRouter>
-      <div className="relative z-0 bg-primary">
-        <div className="bg-hero-pattern bg-cover bg-no-repeat bg-center">
-          <Navbar />
-          <Hero />
-        </div>
-        <About />
-        <Tech />
-        <Experience />
-        <Works />
-        <Feedbacks />
-        <div className="relative z-0">
-          <Contact />
-          <StarsCanvas />
-        </div>
-      </div>
+      <Navbar />
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <div className="relative z-0 bg-primary">
+              <div className="bg-hero-pattern bg-cover bg-no-repeat bg-center">
+                <Hero />
+              </div>
+              <About />
+              <Tech />
+              <Experience />
+              <Works />
+              <Feedbacks />
+              <div className="relative z-0">
+                <Contact />
+                <StarsCanvas />
+              </div>
+            </div>
+          }
+        />
+        <Route path="/blog" element={<Blog />} />
+      </Routes>
+
       <ToTop />
     </BrowserRouter>
   );
