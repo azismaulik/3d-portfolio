@@ -3,20 +3,8 @@ import { useParams } from "react-router-dom";
 import { format } from "date-fns";
 import { UserContext } from "../context/UserContext";
 import { Link } from "react-router-dom";
-
-const BackMenu = () => {
-  return (
-    <div className="flex items-center gap-2">
-      <Link className="italic underline text-sm" to="/">
-        home
-      </Link>
-      <p className="text-sm">/</p>
-      <Link className="italic underline text-sm" to="/blog">
-        blog
-      </Link>
-    </div>
-  );
-};
+import Cookies from "js-cookie";
+import { BackMenu } from "../components/BackMenu";
 
 const RecomendationPost = () => {
   const { id } = useParams();
@@ -28,20 +16,19 @@ const RecomendationPost = () => {
       });
     });
   }, []);
-  console.log(posts);
 
   return (
     <>
-      {posts.map((post) => {
+      {posts.map((post, index) => {
         return post._id !== id ? (
-          <div key={post._id}>
+          <div key={index}>
             <Link to={`/blog/${post._id}`}>
               <h1 className="font-semibold my-4">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   xmlnsXlink="http://www.w3.org/1999/xlink"
                   viewBox="0 0 20 20"
-                  className="w-4 inline mr-2"
+                  className="w-6 inline mr-2"
                 >
                   <g fill="none">
                     <path
@@ -55,7 +42,7 @@ const RecomendationPost = () => {
             </Link>
           </div>
         ) : (
-          <></>
+          ""
         );
       })}
     </>
@@ -64,9 +51,9 @@ const RecomendationPost = () => {
 
 export default function DetailPost() {
   const [postInfo, setPostInfo] = useState(null);
-  const { userInfo } = useContext(UserContext);
   const [isLoading, setIsLoading] = useState(false);
   const { id } = useParams();
+  const myCookie = Cookies.get("token");
 
   async function getPost() {
     try {
@@ -102,42 +89,46 @@ export default function DetailPost() {
               alt=""
             />
           </div>
-          <div className="flex justify-between my-4 md:px-4">
+          <div className="flex justify-between my-4">
             <div className="text-lg text-secondary font-semibold">
               by @{postInfo.author.username}
             </div>
+            {myCookie && (
+              <div className="edit-row">
+                <Link className="edit-btn" to={`/edit/${postInfo._id}`}>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className="w-6 h-6"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"
+                    />
+                  </svg>
+                </Link>
+              </div>
+            )}
             <time className="text-lg text-secondary font-semibold">
               {format(new Date(postInfo.createdAt), "d MMM yyyy ")}
             </time>
           </div>
-          {/* {userInfo.id === postInfo.author._id && (
-          <div className="edit-row">
-            <Link className="edit-btn" to={`/edit/${postInfo._id}`}>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="w-6 h-6"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"
-                />
-              </svg>
-              Edit this post
-            </Link>
-          </div>
-        )} */}
+
           <div
             className="text-sm leading-6"
             dangerouslySetInnerHTML={{ __html: postInfo.content }}
           />
         </div>
-        <div className="w-full lg:w-[300px]  text-secondary">
+        <div className="w-full lg:w-[300px]  text-secondary self-start sticky top-36">
           <h1 className="text-xl font-semibold">Other Post</h1>
+          <div className="flex gap-2 mt-1">
+            <div className="w-[40%] h-2 bg-secondary/50 rounded-lg"></div>
+            <div className="w-[10%] h-2 bg-secondary/50 rounded-lg"></div>
+          </div>
           <RecomendationPost />
         </div>
       </div>

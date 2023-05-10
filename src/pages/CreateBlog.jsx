@@ -4,6 +4,7 @@ import { Navigate } from "react-router-dom";
 import "react-quill/dist/quill.snow.css";
 import { UserContext } from "../context/UserContext";
 import Cookies from "js-cookie";
+import { BackMenu } from "../components/BackMenu";
 
 const formats = [
   "header",
@@ -67,12 +68,12 @@ const Create = () => {
   return (
     <div className="w-full min-h-screen bg-primary flex justify-center">
       <form onSubmit={createNewPost} className="w-[1000px] p-4 mt-[100px]">
-        <p
-          className="text-end text-sm font-semibold cursor-pointer"
-          onClick={logout}
-        >
-          Logout
-        </p>
+        <div className="flex items-center justify-between">
+          <BackMenu />
+          <p className="text-sm font-semibold cursor-pointer" onClick={logout}>
+            Logout
+          </p>
+        </div>
         <div className="w-full my-4 ">
           <label className="font-bold">Title</label>
           <input

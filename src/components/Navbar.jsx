@@ -4,12 +4,19 @@ import { Link } from "react-router-dom";
 import { styles } from "../styles";
 import { navLinks } from "../constants";
 import { logo, menu, close } from "../assets";
+import Cookies from "js-cookie";
 
 const Navbar = () => {
   const [active, setActive] = useState("");
   const [toggle, setToggle] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
+  const myCookie = Cookies.get("token");
+
+  function logout() {
+    Cookies.remove("token");
+    window.location.reload();
+  }
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.scrollY;
@@ -25,6 +32,7 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {}, [myCookie]);
   return (
     <nav
       className={`${
@@ -66,6 +74,15 @@ const Navbar = () => {
           >
             <a href="/blog">blog</a>
           </li>
+          {myCookie && (
+            <li
+              onClick={logout}
+              className="text-white/80
+             hover:text-white text-[18px] font-medium cursor-pointer"
+            >
+              <a>Logout</a>
+            </li>
+          )}
         </ul>
 
         <div className="sm:hidden flex flex-1 justify-end items-center">
