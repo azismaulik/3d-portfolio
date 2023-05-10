@@ -1,40 +1,41 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import { useContext, useState, useEffect } from "react";
+import CardPost from "../components/CardPost";
 
 const BlogList = () => {
-  const [blogs, setBlogs] = useState([]);
-  const apiKey = import.meta.env.VITE_APP_BLOGGER_API_KEY;
-  const blogId = import.meta.env.VITE_APP_BLOGGER_BLOG_ID;
+  const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  async function getPosts() {
+    try {
+      setLoading(true);
+      const response = await fetch("http://localhost:5000/post");
+      const data = await response.json();
+      setPosts(data);
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
+  }
 
   useEffect(() => {
-    const fetchBlogs = async () => {
-      try {
-        const response = await axios.get(
-          `https://www.googleapis.com/blogger/v3/blogs/${blogId}/posts?key=${apiKey}`
-        );
-        setBlogs(response.data.items);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    fetchBlogs();
+    getPosts();
   }, []);
 
-  console.log(blogs);
   return (
-    <div className="bg-primary">
-      <h1>List of blogs:</h1>
-      <ul>
-        {blogs.map((blog) => (
-          <div key={blog.id}>
-            <p key={blog.id}>{blog.title}</p>
-            <div
-              dangerouslySetInnerHTML={{ __html: blog.content }}
-              className="w-[600px] line-clamp-6"
-            />
+    <div className="bg-primary pt-20 md:pt-40 px-4 min-h-screen">
+      <h1 className="text-center font-extrabold text-transparent text-3xl bg-clip-text bg-gradient-to-r from-purple-800 to-pink-600 my-6">
+        My Blog
+      </h1>
+      <div className="w-full flex justify-center gap-4 md:gap-10 flex-wrap">
+        {loading && (
+          <div className="w-full h-[30vh] flex justify-center items-center">
+            <span className="loader"></span>
           </div>
-        ))}
-      </ul>
+        )}
+        {posts.length > 0 &&
+          posts.map((post, index) => <CardPost key={index} {...post} />)}
+      </div>
     </div>
   );
 };
