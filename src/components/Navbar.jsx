@@ -42,8 +42,8 @@ const Navbar = () => {
       }`}
     >
       <div className="w-full flex justify-between items-center max-w-7xl mx-auto">
-        <Link
-          to="/"
+        <a
+          href="/"
           className="flex items-center gap-2"
           onClick={() => {
             setActive("");
@@ -54,9 +54,9 @@ const Navbar = () => {
           <p className="text-white text-[18px] font-bold cursor-pointer flex ">
             Azis Maulana Malik
           </p>
-        </Link>
+        </a>
 
-        <ul className="list-none hidden sm:flex flex-row gap-10">
+        <ul className="list-none hidden md:flex flex-row gap-10">
           {navLinks.map((nav) => (
             <li
               key={nav.id}
@@ -85,7 +85,7 @@ const Navbar = () => {
           )}
         </ul>
 
-        <div className="sm:hidden flex flex-1 justify-end items-center">
+        <div className="md:hidden flex flex-1 justify-end items-center">
           <img
             src={toggle ? close : menu}
             alt="menu"
@@ -119,6 +119,15 @@ const Navbar = () => {
               >
                 <a href="/blog">blog</a>
               </li>
+              {myCookie && (
+                <li
+                  onClick={logout}
+                  className="text-secondary
+             hover:text-white text-[18px] font-medium cursor-pointer"
+                >
+                  <a>Logout</a>
+                </li>
+              )}
             </ul>
           </div>
         </div>

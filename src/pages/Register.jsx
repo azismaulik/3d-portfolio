@@ -4,9 +4,11 @@ const Register = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
+  const baseurl = import.meta.env.VITE_APP_BASE_URL;
+
   async function register(e) {
     e.preventDefault();
-    const response = await fetch("http://localhost:5000/register", {
+    const response = await fetch(`${baseurl}/register`, {
       method: "POST",
       body: JSON.stringify({ username, password }),
       headers: { "Content-Type": "application/json" },

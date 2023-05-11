@@ -11,10 +11,12 @@ const Login = () => {
   const { setUserInfo } = useContext(UserContext);
   const myCookie = Cookies.get("token");
 
+  const baseurl = import.meta.env.VITE_APP_BASE_URL;
+
   async function login(e) {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:5000/login", {
+      const response = await fetch(`${baseurl}/login`, {
         method: "POST",
         body: JSON.stringify({ username, password }),
         headers: { "Content-Type": "application/json" },

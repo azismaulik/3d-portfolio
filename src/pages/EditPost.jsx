@@ -1,76 +1,70 @@
 import React, { useState, useContext, useEffect } from "react";
 import ReactQuill from "react-quill";
-import { Navigate } from "react-router-dom";
-import "react-quill/dist/quill.snow.css";
-import { UserContext } from "../context/UserContext";
+import { Navigate, useParams } from "react-router-dom";
+
 import Cookies from "js-cookie";
 import { BackMenu } from "../components/BackMenu";
 import Editor from "../components/Editor";
 
-const formats = [
-  "header",
-  "font",
-  "size",
-  "bold",
-  "italic",
-  "underline",
-  "strike",
-  "blockquote",
-  "list",
-  "bullet",
-  "indent",
-  "link",
-  "image",
-  "color",
-];
-
-const Create = () => {
-  const { setUserInfo, userInfo } = useContext(UserContext);
-  const [user, setUser] = useState(userInfo?.username);
+const EditPost = () => {
+  const { id } = useParams();
   const [title, setTitle] = useState("");
   const [summary, setSummary] = useState("");
   const [content, setContent] = useState("");
   const [files, setFiles] = useState("");
   const [redirect, setRedirect] = useState(false);
 
-  const myCookie = Cookies.get("token");
-
   const baseurl = import.meta.env.VITE_APP_BASE_URL;
+
+  useEffect(() => {
+    fetch(`${baseurl}/post/${id}`).then((response) => {
+      response.json().then((postInfo) => {
+        setTitle(postInfo.title);
+        setContent(postInfo.content);
+        setSummary(postInfo.summary);
+      });
+    });
+  }, []);
+
+  async function updatePost(e) {
+    e.preventDefault();
+    const data = new FormData();
+    data.set("title", title);
+    data.set("summary", summary);
+    data.set("content", content);
+    data.set("id", id);
+    if (files?.[0]) {
+      data.set("file", files?.[0]);
+    }
+    const response = await fetch(`${baseurl}/post`, {
+      method: "PUT",
+      body: data,
+      credentials: "include",
+    });
+    if (response.ok) {
+      setRedirect(true);
+    } else {
+      alert("Error updating post");
+    }
+  }
+
+  if (redirect) {
+    return <Navigate to={"/blog/" + id} />;
+  }
+
+  const myCookie = Cookies.get("token");
 
   function logout() {
     Cookies.remove("token");
     window.location.reload();
   }
-
-  async function createNewPost(e) {
-    const data = new FormData();
-    data.set("title", title);
-    data.set("summary", summary);
-    data.set("content", content);
-    data.set("file", files[0]);
-    e.preventDefault();
-    const response = await fetch(`${baseurl}/post`, {
-      method: "POST",
-      body: data,
-      credentials: "include",
-    });
-
-    if (response.ok) {
-      setRedirect(true);
-    }
-  }
-
   if (!myCookie) {
     return <Navigate to="/login" />;
   }
 
-  if (redirect) {
-    return <Navigate to={"/blog"} />;
-  }
-
   return (
     <div className="w-full min-h-screen bg-primary flex justify-center">
-      <form onSubmit={createNewPost} className="w-[1000px] p-4 mt-[100px]">
+      <form onSubmit={updatePost} className="w-[1000px] p-4 mt-[100px]">
         <div className="flex items-center justify-between">
           <BackMenu />
           <p className="text-sm font-semibold cursor-pointer" onClick={logout}>
@@ -85,7 +79,6 @@ const Create = () => {
             placeholder="Title"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            required
           />
         </div>
         <div className="w-full my-4">
@@ -96,30 +89,26 @@ const Create = () => {
             placeholder="summary"
             value={summary}
             onChange={(e) => setSummary(e.target.value)}
-            required
           />
         </div>
         <div className="w-full my-4">
-          <label className="font-bold">
-            Image <span className="text-xs font-normal">*ukuran kecil</span>
-          </label>
+          <label className="font-bold">Image</label>
           <input
             type="file"
             className="w-full p-2 rounded my-2 bg-tertiary text-white text-sm border border-secondary"
             onChange={(e) => setFiles(e.target.files)}
-            required
           />
         </div>
         <div className="w-full my-4">
           <label className="font-bold">Content</label>
-          <Editor value={content} onChange={setContent} required />
+          <Editor value={content} onChange={setContent} />
         </div>
         <button className="text-center w-full bg-tertiary rounded p-2">
-          Add
+          Update
         </button>
       </form>
     </div>
   );
 };
 
-export default Create;
+export default EditPost;

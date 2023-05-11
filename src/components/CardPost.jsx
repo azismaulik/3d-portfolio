@@ -11,12 +11,14 @@ const CardPost = ({
   createdAt,
   author,
 }) => {
+  const baseurl = import.meta.env.VITE_APP_BASE_URL;
   return (
-    <div className="max-w-[400px] bg-tertiary my-4 rounded-md">
+    <div className="w-[400px] bg-tertiary my-4 rounded-md">
       <Link to={`/blog/${_id}`}>
         <img
-          className="object-fill object-top w-full h-[250px] rounded-t-md"
-          src={"http://localhost:5000/" + cover}
+          className="object-cover object-top w-full h-[250px] rounded-t-md"
+          loading="lazy"
+          src={`${baseurl}/${cover}`}
           alt={title}
         />
       </Link>

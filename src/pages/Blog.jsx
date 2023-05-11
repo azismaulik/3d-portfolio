@@ -7,10 +7,12 @@ const BlogList = () => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(false);
 
+  const baseurl = import.meta.env.VITE_APP_BASE_URL;
+
   async function getPosts() {
     try {
       setLoading(true);
-      const response = await fetch("http://localhost:5000/post");
+      const response = await fetch(`${baseurl}/post`);
       const data = await response.json();
       setPosts(data);
     } catch (err) {
@@ -52,7 +54,7 @@ const BlogList = () => {
           </Link>
         </div>
       )}
-      <div className="w-full flex justify-center gap-4 md:gap-10 flex-wrap">
+      <div className="container mx-auto flex justify-center gap-4 md:gap-10 flex-wrap">
         {loading && (
           <div className="w-full h-[30vh] flex justify-center items-center">
             <span className="loader"></span>

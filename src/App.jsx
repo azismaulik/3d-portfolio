@@ -18,6 +18,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import { UserContextProvider } from "./context/UserContext";
 import DetailPost from "./pages/DetailPost";
+import EditPost from "./pages/EditPost";
 
 const App = () => {
   return (
@@ -49,6 +50,7 @@ const App = () => {
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:id" element={<DetailPost />} />
           <Route path="/blog/create" element={<CreateBlog />} />
+          <Route path="/blog/edit/:id" element={<EditPost />} />
         </Routes>
 
         <ToTop />
