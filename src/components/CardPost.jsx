@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { format } from "date-fns";
 import { Link } from "react-router-dom";
 
@@ -13,7 +13,7 @@ const CardPost = ({
 }) => {
   const baseurl = import.meta.env.VITE_APP_BASE_URL;
   return (
-    <div className="w-[400px] bg-tertiary my-4 rounded-md">
+    <div className="w-[400px] bg-tertiary my-4 rounded-md relative">
       <Link to={`/blog/${_id}`}>
         <img
           className="object-cover object-top w-full h-[250px] rounded-t-md"

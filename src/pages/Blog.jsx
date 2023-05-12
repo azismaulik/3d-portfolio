@@ -30,7 +30,7 @@ const BlogList = () => {
 
   return (
     <div className="bg-primary pt-20 md:pt-40 px-4 min-h-screen">
-      <h1 className="text-center font-extrabold text-transparent text-3xl bg-clip-text bg-gradient-to-r from-purple-800 to-pink-600 my-6">
+      <h1 className="text-center font-extrabold text-transparent text-3xl bg-clip-text bg-gradient-to-r from-purple-900 to-pink-800 my-6">
         My Blog
       </h1>
       {myCookie && (

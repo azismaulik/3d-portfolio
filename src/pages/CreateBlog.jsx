@@ -1,5 +1,4 @@
 import React, { useState, useContext, useEffect } from "react";
-import ReactQuill from "react-quill";
 import { Navigate } from "react-router-dom";
 import "react-quill/dist/quill.snow.css";
 import { UserContext } from "../context/UserContext";
@@ -56,6 +55,7 @@ const Create = () => {
     });
 
     if (response.ok) {
+      alert("blog telah dibuat");
       setRedirect(true);
     }
   }
