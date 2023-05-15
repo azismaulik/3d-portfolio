@@ -4,13 +4,13 @@ import {
   About,
   Contact,
   Experience,
-  Feedbacks,
   Hero,
   Navbar,
   Tech,
   Works,
   StarsCanvas,
   ToTop,
+  SectionBlog,
 } from "./components";
 import Blog from "./pages/Blog";
 import CreateBlog from "./pages/CreateBlog";
@@ -24,12 +24,12 @@ const App = () => {
   return (
     <UserContextProvider>
       <BrowserRouter>
-        <Navbar />
         <Routes>
           <Route
             path="/"
             element={
               <div className="relative z-0 bg-primary">
+                <Navbar />
                 <div className="bg-hero-pattern bg-cover bg-no-repeat bg-center">
                   <Hero />
                 </div>
@@ -37,7 +37,7 @@ const App = () => {
                 <Tech />
                 <Experience />
                 <Works />
-                <Feedbacks />
+                <SectionBlog />
                 <div className="relative z-0">
                   <Contact />
                   <StarsCanvas />
@@ -45,7 +45,7 @@ const App = () => {
               </div>
             }
           />
-          <Route path="/login" element={<Login />} />
+          <Route exact path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:id" element={<DetailPost />} />

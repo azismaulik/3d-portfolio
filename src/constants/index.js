@@ -341,6 +341,8 @@ const socials = [
   },
 ];
 
+const category = ["website", "technology", "design"];
+
 // const blogs = [
 //   {
 //     name: "How to write a blog post",
@@ -351,4 +353,12 @@ const socials = [
 //   },
 // ];
 
-export { services, technologies, experiences, testimonials, projects, socials };
+export {
+  services,
+  technologies,
+  experiences,
+  testimonials,
+  projects,
+  socials,
+  category,
+};

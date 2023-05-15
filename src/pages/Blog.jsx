@@ -2,10 +2,12 @@ import { useContext, useState, useEffect } from "react";
 import CardPost from "../components/CardPost";
 import Cookies from "js-cookie";
 import { Link } from "react-router-dom";
+import { Navbar } from "../components";
 
 const BlogList = () => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [view, setView] = useState(6);
 
   const baseurl = import.meta.env.VITE_APP_BASE_URL;
 
@@ -29,7 +31,8 @@ const BlogList = () => {
   }, []);
 
   return (
-    <div className="bg-primary pt-20 md:pt-40 px-4 min-h-screen">
+    <div className="bg-primary py-20 md:pt-40 px-4 min-h-screen">
+      <Navbar />
       <h1 className="text-center font-extrabold text-transparent text-3xl bg-clip-text bg-gradient-to-r from-purple-900 to-pink-800 my-6">
         My Blog
       </h1>
@@ -61,7 +64,21 @@ const BlogList = () => {
           </div>
         )}
         {posts.length > 0 &&
-          posts.map((post, index) => <CardPost key={index} {...post} />)}
+          posts
+            .slice(0, view)
+            .map((post, index) => <CardPost key={index} {...post} />)}
+      </div>
+      <div className="flex justify-center">
+        {posts.length <= view ? (
+          ""
+        ) : (
+          <button
+            onClick={() => setView(view + 6)}
+            className="cursor-pointer mt-6 py-2 px-6 rounded-md border border-secondary/25 bg-[#150F30] text-sm"
+          >
+            Load more
+          </button>
+        )}
       </div>
     </div>
   );

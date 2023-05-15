@@ -5,6 +5,7 @@ import { styles } from "../styles";
 import { navLinks } from "../constants";
 import { logo, menu, close } from "../assets";
 import Cookies from "js-cookie";
+import Progress from "../hooks/ProgressBar";
 
 const Navbar = () => {
   const [active, setActive] = useState("");
@@ -12,6 +13,8 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
 
   const myCookie = Cookies.get("token");
+
+  const completion = Progress();
 
   function logout() {
     Cookies.remove("token");
@@ -96,7 +99,7 @@ const Navbar = () => {
           <div
             className={`${
               !toggle ? "hidden" : "flex"
-            } p-6 black-gradient absolute top-20 right-0 mx-4 my-2 min-w-[140px] z-10 rounded-xl`}
+            } p-6 black-gradient absolute top-20 -right-4 mx-4 my-2 min-w-[140px] z-10 rounded-l-xl`}
           >
             <ul className="list-none flex justify-end items-start flex-1 flex-col gap-4">
               {navLinks.map((nav) => (
@@ -132,6 +135,10 @@ const Navbar = () => {
           </div>
         </div>
       </div>
+      <span
+        style={{ transform: `translateX(${completion - 105}%)` }}
+        className={`absolute h-[2px] w-full bg-gradient-to-r from-tertiary to-secondary bottom-0`}
+      ></span>
     </nav>
   );
 };

@@ -5,6 +5,7 @@ import { UserContext } from "../context/UserContext";
 import { Link } from "react-router-dom";
 import Cookies from "js-cookie";
 import { BackMenu } from "../components/BackMenu";
+import { Navbar } from "../components";
 
 const RecomendationPost = () => {
   const { id } = useParams();
@@ -37,7 +38,7 @@ const RecomendationPost = () => {
         </div>
       ) : (
         <>
-          {posts.map((post, index) => {
+          {posts.slice(0, 6).map((post, index) => {
             return post._id !== id ? (
               <div key={index}>
                 <Link to={`/blog/${post._id}`}>
@@ -90,18 +91,17 @@ export default function DetailPost() {
     }
   }
 
-  function handleDelete(_id) {
-    console.log("hapus " + _id);
-  }
-
   useEffect(() => {
     getPost();
   }, [id]);
 
+  console.log(postInfo);
+
   if (!postInfo) return "";
 
   return (
-    <div className="bg-primary py-20 md:pt-36 px-4 min-h-screen">
+    <div className="bg-primary py-20 pt-36 px-4 min-h-screen">
+      <Navbar />
       <div className="container gap-10 justify-center mx-auto flex flex-wrap">
         <div className="md:flex-[0.8]">
           {isLoading ? (
@@ -111,21 +111,22 @@ export default function DetailPost() {
           ) : (
             <>
               <BackMenu />
-              <h1 className="text-2xl md:text-3xl mt-10 font-semibold text-center text-secondary md:w-[70%] md:leading-10 mx-auto">
+              <h1 className="text-2xl md:text-3xl mt-10 font-semibold text-center text-secondary md:w-[80%] md:leading-10 mx-auto">
                 {postInfo.title}
               </h1>
-              <div className="flex justify-center my-6">
-                <img
-                  className="md:w-1/2"
-                  loading="lazy"
-                  src={`${baseurl}/${postInfo.cover}`}
-                  alt=""
-                />
+              <p className="mx-auto text-center mt-4 text-secondary">
+                {format(new Date(postInfo.createdAt), "d-MM-yyyy ")}
+              </p>
+              <div className="text-center text-sm text-secondary my-4">
+                by @{postInfo.author.username}
               </div>
+              <img
+                className="w-full max-h-[500px] object-cover"
+                loading="lazy"
+                src={`${baseurl}/${postInfo.cover}`}
+                alt=""
+              />
               <div className="flex justify-between my-4">
-                <div className="text-lg text-secondary font-semibold">
-                  by @{postInfo.author.username}
-                </div>
                 {myCookie && (
                   <div className="edit-row">
                     <Link
@@ -149,67 +150,8 @@ export default function DetailPost() {
                     </Link>
                   </div>
                 )}
-                {myCookie && (
-                  <div>
-                    <label
-                      htmlFor="my-modal-4"
-                      className="rounded-lg cursor-pointer"
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        xmlnsXlink="http://www.w3.org/1999/xlink"
-                        viewBox="0 0 20 20"
-                        width={20}
-                        height={20}
-                        className="text-secondary"
-                      >
-                        <g fill="none">
-                          <path
-                            d="M11.5 4a1.5 1.5 0 0 0-3 0h-1a2.5 2.5 0 0 1 5 0H17a.5.5 0 0 1 0 1h-.554L15.15 16.23A2 2 0 0 1 13.163 18H6.837a2 2 0 0 1-1.987-1.77L3.553 5H3a.5.5 0 0 1-.492-.41L2.5 4.5A.5.5 0 0 1 3 4h8.5zm3.938 1H4.561l1.282 11.115a1 1 0 0 0 .994.885h6.326a1 1 0 0 0 .993-.885L15.438 5zM8.5 7.5c.245 0 .45.155.492.359L9 7.938v6.125c0 .241-.224.437-.5.437c-.245 0-.45-.155-.492-.359L8 14.062V7.939c0-.242.224-.438.5-.438zm3 0c.245 0 .45.155.492.359l.008.079v6.125c0 .241-.224.437-.5.437c-.245 0-.45-.155-.492-.359L11 14.062V7.939c0-.242.224-.438.5-.438z"
-                            fill="currentColor"
-                          ></path>
-                        </g>
-                      </svg>
-                    </label>
-
-                    <input
-                      type="checkbox"
-                      id="my-modal-4"
-                      className="modal-toggle"
-                    />
-                    <label
-                      htmlFor="my-modal-4"
-                      className="modal cursor-pointer"
-                    >
-                      <label className="modal-box relative" htmlFor="">
-                        <h3 className="text-base">
-                          Yakin ingin menghapus postingan{" "}
-                          <span className="font-bold"> {postInfo.title} ?</span>
-                        </h3>
-                        <div className="mt-6">
-                          <button
-                            onClick={handleDelete(postInfo._id)}
-                            className="btn btn-error"
-                          >
-                            Hapus
-                          </button>
-                          <label
-                            htmlFor="my-modal-4"
-                            className="btn btn-primary ml-6"
-                          >
-                            Cancel
-                          </label>
-                        </div>
-                      </label>
-                    </label>
-                  </div>
-                )}
 
                 {/* The button to open modal */}
-
-                <time className="text-lg text-secondary font-semibold">
-                  {format(new Date(postInfo.createdAt), "d MMM yyyy ")}
-                </time>
               </div>
 
               <div
