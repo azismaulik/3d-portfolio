@@ -29,8 +29,8 @@ const Works = () => {
             className="mt-3 text-secondary text-[17px] max-w-5xl leading-[30px]"
           >
             Following projects showcases my skills and experience through
-            real-world examples of my work. Each project is briefly described with
-            links to code repositories and live demos in it. It reflects my
+            real-world examples of my work. Each project is briefly described
+            with links to code repositories and live demos in it. It reflects my
             ability to solve complex problems, work with different technologies,
             and manage projects effectively.
           </motion.p>
@@ -38,7 +38,14 @@ const Works = () => {
 
         <div className="mt-20 flex flex-wrap justify-evenly gap-7">
           {projects?.slice(0, tampil).map((project, index) => (
-            <div
+            <motion.div
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{
+                type: "spring",
+                ease: "easeInOut",
+                duration: 1,
+              }}
               key={index}
               className="p-6 w-full sm:w-80 bg-[#150F30] rounded-xl"
             >
@@ -62,7 +69,7 @@ const Works = () => {
                   </p>
                 ))}
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
         <div className="flex justify-center items-center mt-8">

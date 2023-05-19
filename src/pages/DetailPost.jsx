@@ -95,8 +95,6 @@ export default function DetailPost() {
     getPost();
   }, [id]);
 
-  console.log(postInfo);
-
   if (!postInfo) return "";
 
   return (
@@ -120,12 +118,26 @@ export default function DetailPost() {
               <div className="text-center text-sm text-secondary my-4">
                 by @{postInfo.author.username}
               </div>
-              <img
-                className="w-full max-h-[500px] object-cover"
-                loading="lazy"
-                src={`${baseurl}/${postInfo.cover}`}
-                alt=""
-              />
+              <figure className="relative">
+                <img
+                  className="w-full max-h-[500px] object-cover"
+                  loading="lazy"
+                  src={`${baseurl}/${postInfo.cover}`}
+                  alt=""
+                />
+                <div className="absolute top-2 left-2 flex gap-2">
+                  {postInfo.categories?.map((cat, i) => {
+                    return (
+                      <p
+                        key={i}
+                        className="bg-primary z-10 py-[2px] px-4 rounded-full text-xs border border-secondary"
+                      >
+                        {cat}
+                      </p>
+                    );
+                  })}
+                </div>
+              </figure>
               <div className="flex justify-between my-4">
                 {myCookie && (
                   <div className="edit-row">

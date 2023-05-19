@@ -15,10 +15,11 @@ import {
 import Blog from "./pages/Blog";
 import CreateBlog from "./pages/CreateBlog";
 import Login from "./pages/Login";
-import Register from "./pages/Register";
+// import Register from "./pages/Register";
 import { UserContextProvider } from "./context/UserContext";
 import DetailPost from "./pages/DetailPost";
 import EditPost from "./pages/EditPost";
+import NotFound from "./pages/404";
 
 const App = () => {
   return (
@@ -46,11 +47,12 @@ const App = () => {
             }
           />
           <Route exact path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
+          {/* <Route path="/register" element={<Register />} /> */}
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:id" element={<DetailPost />} />
           <Route path="/blog/create" element={<CreateBlog />} />
           <Route path="/blog/edit/:id" element={<EditPost />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
 
         <ToTop />

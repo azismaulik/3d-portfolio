@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { format } from "date-fns";
 import { Link } from "react-router-dom";
 import Cookies from "js-cookie";
+import { motion } from "framer-motion";
 
 const CardPost = ({
   _id,
@@ -58,10 +59,19 @@ const CardPost = ({
           </div>
         </div>
       )}
-      <div className="w-[400px] bg-tertiary my-4 rounded-md relative">
+      <motion.div
+        initial={{ scale: 0 }}
+        animate={{ scale: 1 }}
+        transition={{
+          type: "spring",
+          ease: "easeInOut",
+          duration: 1,
+        }}
+        className="w-[400px] bg-tertiary my-4 rounded-md relative"
+      >
         {myCookie && (
           <div
-            className="absolute p-1 rounded bg-tertiary cursor-pointer top-2 right-2"
+            className="absolute p-1 rounded bg-tertiary cursor-pointer top-2 right-2 z-10"
             onClick={() => setModal(true)}
           >
             <svg
@@ -87,7 +97,9 @@ const CardPost = ({
             src={`${baseurl}/${cover}`}
             alt={title}
           />
-          <div className="flex absolute bottom-1.5 left-1 gap-2 mt-4">
+        </Link>
+        <div className="p-4 text flex flex-col justify-center gap-3">
+          <div className="flex gap-2">
             {categories?.map((cat, i) => (
               <p
                 className={`text-[10px] py-1 px-3 rounded-full border border-secondary`}
@@ -97,8 +109,6 @@ const CardPost = ({
               </p>
             ))}
           </div>
-        </Link>
-        <div className="p-4 text flex flex-col justify-center gap-3">
           <Link to={`/blog/${_id}`}>
             <h1 className="text-lg font-semibold">{title}</h1>
           </Link>
@@ -112,7 +122,7 @@ const CardPost = ({
             <p>{format(new Date(createdAt), "d-MM-yyyy ")}</p>
           </div>
         </div>
-      </div>
+      </motion.div>
     </>
   );
 };

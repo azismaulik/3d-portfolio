@@ -23,8 +23,6 @@ const SectionBlog = () => {
     }
   }
 
-  console.log(blog);
-
   useEffect(() => {
     getBlog();
   }, []);
