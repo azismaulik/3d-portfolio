@@ -20,6 +20,9 @@ import { UserContextProvider } from "./context/UserContext";
 import DetailPost from "./pages/DetailPost";
 import EditPost from "./pages/EditPost";
 import NotFound from "./pages/404";
+import Home from "./pages/admin/Home";
+import Projects from "./pages/admin/Projects";
+import Blogs from "./pages/admin/Blogs";
 
 const App = () => {
   return (
@@ -52,6 +55,9 @@ const App = () => {
           <Route path="/blog/:id" element={<DetailPost />} />
           <Route path="/blog/create" element={<CreateBlog />} />
           <Route path="/blog/edit/:id" element={<EditPost />} />
+          <Route path="/admin" element={<Home />} />
+          <Route path="/admin/projects" element={<Projects />} />
+          <Route path="/admin/blogs" element={<Blogs />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
 

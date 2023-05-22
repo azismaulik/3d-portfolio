@@ -18,6 +18,9 @@ module.exports = {
       screens: {
         xs: "450px",
       },
+      fontFamily: {
+        pangolin: ["Pangolin", "cursive"],
+      },
       backgroundImage: {
         "hero-pattern": "url('/src/assets/herobg.png')",
       },
