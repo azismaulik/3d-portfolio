@@ -1,13 +1,12 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
 import Cookies from "js-cookie";
-import Editor from "../components/Editor";
+import Editor from "../../components/Editor";
 
-const EditPost = () => {
+const EditProject = () => {
   const { id } = useParams();
   const [title, setTitle] = useState("");
-  const [summary, setSummary] = useState("");
-  const [content, setContent] = useState("");
+  const [description, setDescription] = useState("");
   const [files, setFiles] = useState("");
   const [image, setImage] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState("");
@@ -17,41 +16,40 @@ const EditPost = () => {
 
   const baseurl = import.meta.env.VITE_APP_BASE_URL;
 
-  const fetchPost = async () => {
+  const fetchProject = async () => {
     try {
       setIsLoading(true);
-      const response = await fetch(`${baseurl}/post/${id}`);
+      const response = await fetch(`${baseurl}/project/${id}`);
       const data = await response.json();
       setTitle(data.title);
-      setSummary(data.summary);
-      setContent(data.content);
-      setImage(data.cover);
-      setCategories(data.categories);
+      setDescription(data.description);
+      setCategories(data.tag);
+      setImage(data.image);
     } catch (err) {
       console.log(err);
     } finally {
       setIsLoading(false);
     }
   };
+
   useEffect(() => {
-    fetchPost();
+    fetchProject();
   }, [id]);
 
   const categoryString = JSON.stringify(categories);
 
-  async function updatePost(e) {
+  async function updateProject(e) {
     e.preventDefault();
     const data = new FormData();
     data.append("title", title);
-    data.append("summary", summary);
-    data.append("category", categoryString);
-    data.append("content", content);
+    data.append("description", description);
+    data.append("tag", categoryString);
     data.append("id", id);
     if (files?.[0]) {
       data.append("file", files?.[0]);
     }
     try {
-      const response = await fetch(`${baseurl}/post/${id}`, {
+      const response = await fetch(`${baseurl}/project/${id}`, {
         method: "PUT",
         body: data,
         credentials: "include",
@@ -92,16 +90,7 @@ const EditPost = () => {
   };
 
   if (redirect) {
-    // return <Navigate to={"/blog/" + id} />;
-    return (
-      <Navigate
-        to={
-          window.location.href.includes("admin")
-            ? "/admin/blogs"
-            : `/blog/${id}`
-        }
-      />
-    );
+    return <Navigate to={"/admin/projects"} />;
   }
 
   const myCookie = Cookies.get("token");
@@ -121,7 +110,7 @@ const EditPost = () => {
           <span className="loader"></span>
         </div>
       ) : (
-        <form onSubmit={updatePost} className="w-[1000px] p-4 mt-[100px]">
+        <form onSubmit={updateProject} className="w-[1000px] p-4 mt-[100px]">
           <div className="flex items-center justify-between">
             <Link to={-1} className="flex items-center">
               <svg
@@ -202,13 +191,13 @@ const EditPost = () => {
             </div>
           </div>
           <div className="w-full my-4 ">
-            <label className="font-bold">Category</label>
+            <label className="font-bold">Tag</label>
             <input
               type="text"
               onChange={handleCategoryChange}
               value={selectedCategory}
               className="w-full p-2 rounded my-2 bg-tertiary text-white text-sm border border-secondary"
-              placeholder="Categories"
+              placeholder="Tags"
             />
             <div className="flex gap-2 items-center ">
               {selectedCategory && (
@@ -243,21 +232,10 @@ const EditPost = () => {
               required
             />
           </div>
-          <div className="w-full my-4">
-            <label className="font-bold">Summary</label>
-            <input
-              type="text"
-              className="w-full p-2 rounded my-2 bg-tertiary text-white text-sm border border-secondary"
-              placeholder="summary"
-              value={summary}
-              onChange={(e) => setSummary(e.target.value)}
-              required
-            />
-          </div>
 
           <div className="w-full my-4">
-            <label className="font-bold">Content</label>
-            <Editor value={content} onChange={setContent} required />
+            <label className="font-bold">Description</label>
+            <Editor value={description} onChange={setDescription} required />
           </div>
           <button className="text-center w-full bg-tertiary rounded p-2">
             Update
@@ -268,4 +246,4 @@ const EditPost = () => {
   );
 };
 
-export default EditPost;
+export default EditProject;

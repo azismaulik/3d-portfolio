@@ -1,7 +1,6 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { format } from "date-fns";
-import { UserContext } from "../context/UserContext";
 import { Link } from "react-router-dom";
 import Cookies from "js-cookie";
 import { BackMenu } from "../components/BackMenu";

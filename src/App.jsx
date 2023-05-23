@@ -23,6 +23,8 @@ import NotFound from "./pages/404";
 import Home from "./pages/admin/Home";
 import Projects from "./pages/admin/Projects";
 import Blogs from "./pages/admin/Blogs";
+import CreateProject from "./pages/admin/CreateProject";
+import EditProject from "./pages/admin/EditProject";
 
 const App = () => {
   return (
@@ -56,8 +58,12 @@ const App = () => {
           <Route path="/blog/create" element={<CreateBlog />} />
           <Route path="/blog/edit/:id" element={<EditPost />} />
           <Route path="/admin" element={<Home />} />
-          <Route path="/admin/projects" element={<Projects />} />
           <Route path="/admin/blogs" element={<Blogs />} />
+          <Route path="/admin/projects" element={<Projects />} />
+          <Route path="/admin/blogs/create" element={<CreateBlog />} />
+          <Route path="/admin/projects/create" element={<CreateProject />} />
+          <Route path="/admin/blogs/:id/edit" element={<EditPost />} />
+          <Route path="/admin/projects/:id/edit" element={<EditProject />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
 

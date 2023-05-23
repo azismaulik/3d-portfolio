@@ -1,27 +1,36 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { logo } from "../../assets";
+import Cookies from "js-cookie";
 
 const Sidebar = () => {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
+
+  function logout() {
+    Cookies.remove("token");
+    window.location.reload();
+  }
+
   return (
     <>
       <div
         className={`${
-          !isOpen ? "-translate-x-60 fixed" : "fixed md:sticky"
-        } flex flex-col gap-2 transition bottom-0 top-0 w-60 bg-tertiary p-4 text-white font-semibold`}
+          !isOpen
+            ? "-translate-x-60 lg:-translate-x-0 fixed lg:sticky"
+            : "fixed lg:sticky"
+        } flex flex-col gap-2 transition top-0 bottom-0 w-60 xl:w-72 bg-tertiary p-4 text-white font-semibold max-h-screen`}
       >
-        <div className="flex gap-2 items-center mb-6">
+        <NavLink to="/" className="flex gap-2 items-center mb-6">
           <img src={logo} alt="logo" className="w-12 h-12 object-contain" />
           <p className="text-white text-sm font-bold cursor-pointer flex ">
             Azis Maulana Malik
           </p>
-        </div>
+        </NavLink>
         <NavLink
           className={({ isActive }) =>
             isActive
-              ? "bg-violet-700 py-2 px-4 rounded-lg block"
-              : "bg-violet-700/20 py-2 px-4 rounded-lg block"
+              ? "btn btn-primary text-left"
+              : "btn bg-tertiary text-left shadow shadow-violet-800"
           }
           end
           to="/admin"
@@ -31,8 +40,8 @@ const Sidebar = () => {
         <NavLink
           className={({ isActive }) =>
             isActive
-              ? "bg-violet-700 py-2 px-4 rounded-lg block"
-              : "bg-violet-700/20 py-2 px-4 rounded-lg block"
+              ? "btn btn-primary text-left"
+              : "btn bg-tertiary text-left shadow shadow-violet-800"
           }
           to="/admin/projects"
         >
@@ -41,16 +50,37 @@ const Sidebar = () => {
         <NavLink
           className={({ isActive }) =>
             isActive
-              ? "bg-violet-700 py-2 px-4 rounded-lg block"
-              : "bg-violet-700/20 py-2 px-4 rounded-lg block"
+              ? "btn btn-primary text-left"
+              : "btn bg-tertiary text-left shadow shadow-violet-800"
           }
           to="/admin/blogs"
         >
           blogs
         </NavLink>
+        <div
+          onClick={logout}
+          className="bg-violet-700/20 py-2 px-4 rounded-lg mt-auto flex justify-center items-center gap-2 cursor-pointer"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            xmlnsXlink="http://www.w3.org/1999/xlink"
+            viewBox="0 0 32 32"
+            width="18"
+          >
+            <path
+              d="M6 30h12a2.002 2.002 0 0 0 2-2v-3h-2v3H6V4h12v3h2V4a2.002 2.002 0 0 0-2-2H6a2.002 2.002 0 0 0-2 2v24a2.002 2.002 0 0 0 2 2z"
+              fill="currentColor"
+            ></path>
+            <path
+              d="M20.586 20.586L24.172 17H10v-2h14.172l-3.586-3.586L22 10l6 6l-6 6l-1.414-1.414z"
+              fill="currentColor"
+            ></path>
+          </svg>
+          <span> Log out</span>
+        </div>
         <label
           onClick={() => setIsOpen(!isOpen)}
-          className="btn btn-primary drawer-button m-4 absolute -right-[80px] top-0"
+          className="btn btn-primary drawer-button m-4 absolute -right-[90px] -top-2 lg:hidden"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"

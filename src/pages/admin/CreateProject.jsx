@@ -1,17 +1,16 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Navigate } from "react-router-dom";
 import "react-quill/dist/quill.snow.css";
-import { UserContext } from "../context/UserContext";
+import { UserContext } from "../../context/UserContext";
 import Cookies from "js-cookie";
-import { BackMenu } from "../components/BackMenu";
-import Editor from "../components/Editor";
+import { BackMenu } from "../../components/BackMenu";
+import Editor from "../../components/Editor";
 
-const Create = () => {
+const CreateProject = () => {
   const { setUserInfo, userInfo } = useContext(UserContext);
   const [user, setUser] = useState(userInfo?.username);
   const [title, setTitle] = useState("");
-  const [summary, setSummary] = useState("");
-  const [content, setContent] = useState("");
+  const [description, setDescription] = useState("");
   const [files, setFiles] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
   const [categories, setCategories] = useState([]);
@@ -32,19 +31,18 @@ const Create = () => {
   async function createNewPost(e) {
     const data = new FormData();
     data.set("title", title);
-    data.set("summary", summary);
-    data.set("content", content);
-    data.set("category", categoryString);
+    data.set("description", description);
+    data.set("tag", categoryString);
     data.set("file", files[0]);
     e.preventDefault();
-    const response = await fetch(`${baseurl}/post`, {
+    const response = await fetch(`${baseurl}/project`, {
       method: "POST",
       body: data,
       credentials: "include",
     });
 
     if (response.ok) {
-      alert("blog telah dibuat");
+      alert("project telah ditambahkan");
       setRedirect(true);
     }
   }
@@ -77,11 +75,7 @@ const Create = () => {
   }
 
   if (redirect) {
-    return (
-      <Navigate
-        to={window.location.href.includes("admin") ? "/admin/blogs" : "/blog"}
-      />
-    );
+    return <Navigate to={"/admin/projects"} />;
   }
 
   return (
@@ -149,7 +143,7 @@ const Create = () => {
           </div>
         </div>
         <div className="w-full my-4 ">
-          <label className="font-bold">Category</label>
+          <label className="font-bold">Tag</label>
           <input
             type="text"
             onChange={handleCategoryChange}
@@ -190,21 +184,10 @@ const Create = () => {
             required
           />
         </div>
-        <div className="w-full my-4">
-          <label className="font-bold">Summary</label>
-          <input
-            type="text"
-            className="w-full p-2 rounded my-2 bg-tertiary text-white text-sm border border-secondary"
-            placeholder="summary"
-            value={summary}
-            onChange={(e) => setSummary(e.target.value)}
-            required
-          />
-        </div>
 
         <div className="w-full my-4">
-          <label className="font-bold">Content</label>
-          <Editor value={content} onChange={setContent} required />
+          <label className="font-bold">Description</label>
+          <Editor value={description} onChange={setDescription} required />
         </div>
         <button className="text-center w-full bg-tertiary rounded p-2">
           Add
@@ -214,4 +197,4 @@ const Create = () => {
   );
 };
 
-export default Create;
+export default CreateProject;

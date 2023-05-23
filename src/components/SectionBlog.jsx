@@ -34,7 +34,6 @@ const SectionBlog = () => {
       <h2 className={`${styles.sectionHeadText} text-center`}>
         My Recent Blog.
       </h2>
-
       <div className="mt-10 flex justify-center flex-wrap gap-4">
         {loading ? (
           <div className="w-full h-[300px] flex justify-center items-center">
@@ -42,20 +41,28 @@ const SectionBlog = () => {
           </div>
         ) : (
           <>
-            {blog.slice(0, 3).map((blog) => (
+            {blog?.slice(0, 3).map((blog) => (
               <CardPost key={blog._id} {...blog} />
             ))}
           </>
         )}
       </div>
-      <div className="flex justify-center">
-        <button
-          onClick={() => navigate("/blog")}
-          className="cursor-pointer mt-6 py-2 px-6 rounded-md border border-secondary/25 bg-[#150F30] text-sm"
-        >
-          View All
-        </button>
-      </div>
+      {blog.length > 0 ? (
+        <div className="flex justify-center">
+          <button
+            onClick={() => navigate("/blog")}
+            className="cursor-pointer mt-6 py-2 px-6 rounded-md border border-secondary/25 bg-[#150F30] text-sm"
+          >
+            View All
+          </button>
+        </div>
+      ) : (
+        <div className="w-full h-[200px] flex justify-center">
+          <h1 className="text-xl text-secondary font-bold">
+            Tidak Ada Blog / Terjadi Kesalahan Server
+          </h1>
+        </div>
+      )}
     </section>
   );
 };

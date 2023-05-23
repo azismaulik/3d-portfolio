@@ -1,5 +1,5 @@
 import { useContext, useState, useEffect } from "react";
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
 import Cookies from "js-cookie";
 
@@ -10,6 +10,8 @@ const Login = () => {
   const [redirect, setRedirect] = useState(false);
   const { setUserInfo } = useContext(UserContext);
   const myCookie = Cookies.get("token");
+
+  const navigate = useNavigate;
 
   const baseurl = import.meta.env.VITE_APP_BASE_URL;
 
@@ -35,14 +37,12 @@ const Login = () => {
     }
   }
 
-  if (myCookie) {
-    return <Navigate to="/blog" />;
-  }
-
   if (redirect) {
-    return <Navigate to={"/blog/create"} />;
+    return <Navigate to={"/admin"} />;
   }
-
+  if (myCookie) {
+    return <Navigate to="/" />;
+  }
   return (
     <div className="w-full min-h-screen bg-primary flex justify-center">
       <form className="w-[500px] p-4 mt-[100px]" onSubmit={login}>
