@@ -7,6 +7,7 @@ const EditProject = () => {
   const { id } = useParams();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [link, setLink] = useState("");
   const [files, setFiles] = useState("");
   const [image, setImage] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState("");
@@ -23,6 +24,7 @@ const EditProject = () => {
       const data = await response.json();
       setTitle(data.title);
       setDescription(data.description);
+      setLink(data.link);
       setCategories(data.tag);
       setImage(data.image);
     } catch (err) {
@@ -44,6 +46,7 @@ const EditProject = () => {
     data.append("title", title);
     data.append("description", description);
     data.append("tag", categoryString);
+    data.append("link", link);
     data.append("id", id);
     if (files?.[0]) {
       data.append("file", files?.[0]);
@@ -104,13 +107,16 @@ const EditProject = () => {
   }
 
   return (
-    <div className="w-full min-h-screen bg-primary flex justify-center">
+    <div className="w-full min-h-screen bg-bg-form bg-cover bg-fixed md:p-10 flex justify-center">
       {isLoading ? (
         <div className="w-full min-h-screen flex justify-center items-center">
           <span className="loader"></span>
         </div>
       ) : (
-        <form onSubmit={updateProject} className="w-[1000px] p-4 mt-[100px]">
+        <form
+          onSubmit={updateProject}
+          className="w-[1000px] p-4 md:p-8 rounded bg-input/50 md:glass"
+        >
           <div className="flex items-center justify-between">
             <Link to={-1} className="flex items-center">
               <svg
@@ -134,7 +140,7 @@ const EditProject = () => {
             </p>
           </div>
           <div className="w-full my-4">
-            <label className="font-bold">
+            <label className="text-sm text-white font-semibold">
               Image <span className="text-xs font-normal">*ukuran kecil</span>
             </label>
             <div
@@ -191,12 +197,12 @@ const EditProject = () => {
             </div>
           </div>
           <div className="w-full my-4 ">
-            <label className="font-bold">Tag</label>
+            <label className="text-sm text-white font-semibold">Tag</label>
             <input
               type="text"
               onChange={handleCategoryChange}
               value={selectedCategory}
-              className="w-full p-2 rounded my-2 bg-tertiary text-white text-sm border border-secondary"
+              className="w-full p-2 rounded my-2 bg-input text-white text-sm border border-secondary"
               placeholder="Tags"
             />
             <div className="flex gap-2 items-center ">
@@ -222,10 +228,23 @@ const EditProject = () => {
             </div>
           </div>
           <div className="w-full my-4 ">
-            <label className="font-bold">Title</label>
+            <label className="text-sm text-white font-semibold">
+              Link Website
+            </label>
             <input
               type="text"
-              className="w-full p-2 rounded my-2 bg-tertiary text-white text-sm border border-secondary"
+              className="w-full p-2 rounded my-2 bg-input text-white text-sm border border-secondary"
+              placeholder="https://..."
+              value={link}
+              onChange={(e) => setLink(e.target.value)}
+              required
+            />
+          </div>
+          <div className="w-full my-4 ">
+            <label className="text-sm text-white font-semibold">Title</label>
+            <input
+              type="text"
+              className="w-full p-2 rounded my-2 bg-input text-white text-sm border border-secondary"
               placeholder="Title"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
@@ -234,10 +253,12 @@ const EditProject = () => {
           </div>
 
           <div className="w-full my-4">
-            <label className="font-bold">Description</label>
+            <label className="text-sm text-white font-semibold">
+              Description
+            </label>
             <Editor value={description} onChange={setDescription} required />
           </div>
-          <button className="text-center w-full bg-tertiary rounded p-2">
+          <button className="text-center w-full bg-input rounded p-2">
             Update
           </button>
         </form>

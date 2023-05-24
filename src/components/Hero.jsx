@@ -18,22 +18,16 @@ const Hero = () => {
           <h1 className={`${styles.heroHeadText} text-white`}>
             Hi, I'm <span className="text-[#A437DB]">Azis</span>
           </h1>
-          {/* <p className={`${styles.heroSubText} mt-2 text-white-100`}>
-            I Frontend developer and <br />
-            UI/UX Designer
-          </p> */}
+
           <h1 className="inline md:text-xl font-semibold">and I'm a </h1>
           <ReactTypingEffect
             speed={100}
             eraseDelay={1000}
             eraseSpeed={100}
             typingDelay={100}
-            className="text-xl sm:font-semibold text-[#A437DB]"
+            className="text-xl font-semibold text-[#A437DB]"
             text={["Web developer", "UI / UX Designer"]}
           />
-          {/* <button className="cursor-pointer py-2 px-6 w-40 rounded-md border border-secondary/25 bg-[#A437DB] text-sm block mt-8">
-            hubungi
-          </button> */}
         </div>
       </div>
 

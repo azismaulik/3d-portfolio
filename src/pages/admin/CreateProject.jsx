@@ -11,6 +11,7 @@ const CreateProject = () => {
   const [user, setUser] = useState(userInfo?.username);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [link, setLink] = useState("");
   const [files, setFiles] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
   const [categories, setCategories] = useState([]);
@@ -33,6 +34,7 @@ const CreateProject = () => {
     data.set("title", title);
     data.set("description", description);
     data.set("tag", categoryString);
+    data.set("link", link);
     data.set("file", files[0]);
     e.preventDefault();
     const response = await fetch(`${baseurl}/project`, {
@@ -79,8 +81,11 @@ const CreateProject = () => {
   }
 
   return (
-    <div className="w-full min-h-screen bg-primary flex justify-center">
-      <form onSubmit={createNewPost} className="w-[1000px] p-4 mt-[100px]">
+    <div className="w-full min-h-screen bg-bg-form bg-cover bg-fixed bg-no-repeat flex justify-center md:p-10">
+      <form
+        onSubmit={createNewPost}
+        className="w-[1000px] p-4 md:p-8 bg-input/50 md:glass self-start rounded"
+      >
         <div className="flex items-center justify-between">
           <BackMenu />
           <p className="text-sm font-semibold cursor-pointer" onClick={logout}>
@@ -88,11 +93,11 @@ const CreateProject = () => {
           </p>
         </div>
         <div className="w-full my-4">
-          <label className="font-bold">
+          <label className="text-sm text-white">
             Image <span className="text-xs font-normal">*ukuran kecil</span>
           </label>
           <div
-            className="w-full h-[350px] flex justify-center items-center rounded border my-2 border-dashed border-secondary relative
+            className="w-full h-[350px] flex justify-center items-center rounded border my-2 border-dashed border-white relative
           "
           >
             {image && (
@@ -143,13 +148,13 @@ const CreateProject = () => {
           </div>
         </div>
         <div className="w-full my-4 ">
-          <label className="font-bold">Tag</label>
+          <label className="text-sm text-white">Tag</label>
           <input
             type="text"
             onChange={handleCategoryChange}
             value={selectedCategory}
-            className="w-full p-2 rounded my-2 bg-tertiary text-white text-sm border border-secondary"
-            placeholder="Categories"
+            className="w-full p-2 rounded my-2 bg-input text-white text-sm border border-white"
+            placeholder="Tag"
           />
           <div className="flex gap-2 items-center ">
             {selectedCategory && (
@@ -164,7 +169,7 @@ const CreateProject = () => {
               {categories.map((category, index) => (
                 <div
                   key={index}
-                  className="text-xs relative px-2 border self-center border-secondary rounded-full"
+                  className="text-xs relative px-2 border self-center border-white rounded-full"
                 >
                   {category}{" "}
                   <button onClick={() => removeCategory(index)}>x</button>
@@ -174,24 +179,33 @@ const CreateProject = () => {
           </div>
         </div>
         <div className="w-full my-4 ">
-          <label className="font-bold">Title</label>
+          <label className="text-sm text-white">Title</label>
           <input
             type="text"
-            className="w-full p-2 rounded my-2 bg-tertiary text-white text-sm border border-secondary"
+            className="w-full p-2 rounded my-2 bg-input text-white text-sm border border-white"
             placeholder="Title"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             required
           />
         </div>
+        <div className="w-full my-4 ">
+          <label className="text-sm text-white">Link</label>
+          <input
+            type="text"
+            className="w-full p-2 rounded my-2 bg-input text-white text-sm border border-white"
+            placeholder="https://..."
+            value={link}
+            onChange={(e) => setLink(e.target.value)}
+            required
+          />
+        </div>
 
         <div className="w-full my-4">
-          <label className="font-bold">Description</label>
+          <label className="text-sm text-white">Description</label>
           <Editor value={description} onChange={setDescription} required />
         </div>
-        <button className="text-center w-full bg-tertiary rounded p-2">
-          Add
-        </button>
+        <button className="text-center w-full bg-input rounded p-2">Add</button>
       </form>
     </div>
   );

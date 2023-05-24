@@ -32,7 +32,7 @@ const Editor = ({ value, onChange }) => {
   ];
   return (
     <ReactQuill
-      className="bg-tertiary rounded"
+      className="bg-input rounded my-2"
       theme={"snow"}
       formats={formats}
       modules={modules}

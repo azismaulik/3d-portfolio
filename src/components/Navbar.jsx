@@ -62,16 +62,20 @@ const Navbar = () => {
             <li
               key={nav.id}
               className={`${
-                active === nav.title ? "text-white" : "text-white/80"
-              } hover:text-white text-[18px] font-medium cursor-pointer`}
+                active === nav.title ? "text-[#A437DB]" : "text-white/80"
+              } hover:text-[#A437DB] text-[18px] font-medium cursor-pointer`}
               onClick={() => setActive(nav.title)}
             >
               <a href={`/#${nav.id}`}>{nav.title}</a>
             </li>
           ))}
           <li
-            className="text-white/80
-             hover:text-white text-[18px] font-medium cursor-pointer"
+            className={`${
+              window.location.href.includes("blog")
+                ? "text-[#A437DB]"
+                : "text-white/80"
+            }
+             hover:text-[#A437DB] text-[18px] font-medium cursor-pointer`}
           >
             <a href="/blog">blog</a>
           </li>
@@ -97,14 +101,14 @@ const Navbar = () => {
           <div
             className={`${
               !toggle ? "hidden" : "flex"
-            } p-6 black-gradient absolute top-20 -right-4 mx-4 my-2 min-w-[140px] z-10 rounded-l-xl`}
+            } p-6 bg-input/90 shadow shadow-violet-800 absolute top-20 -right-4 mx-4 my-2 min-w-[140px] z-10 rounded-l-xl`}
           >
             <ul className="list-none flex justify-end items-start flex-1 flex-col gap-4">
               {navLinks.map((nav) => (
                 <li
                   key={nav.id}
                   className={`font-poppins font-medium cursor-pointer text-[16px] ${
-                    active === nav.title ? "text-white" : "text-secondary"
+                    active === nav.title ? "text-violet-800" : "text-white"
                   }`}
                   onClick={() => {
                     setToggle(!toggle);

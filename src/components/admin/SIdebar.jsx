@@ -18,7 +18,7 @@ const Sidebar = () => {
           !isOpen
             ? "-translate-x-60 lg:-translate-x-0 fixed lg:sticky"
             : "fixed lg:sticky"
-        } flex flex-col gap-2 transition top-0 bottom-0 w-60 xl:w-72 bg-tertiary p-4 text-white font-semibold max-h-screen`}
+        } z-50 flex flex-col gap-2 transition top-0 bottom-0 w-60 lg:w-72 bg-input p-4 text-white font-semibold max-h-screen`}
       >
         <NavLink to="/" className="flex gap-2 items-center mb-6">
           <img src={logo} alt="logo" className="w-12 h-12 object-contain" />
@@ -29,37 +29,39 @@ const Sidebar = () => {
         <NavLink
           className={({ isActive }) =>
             isActive
-              ? "btn btn-primary text-left"
-              : "btn bg-tertiary text-left shadow shadow-violet-800"
+              ? "btn bg-ungu hover:bg-tertiary text-left"
+              : "btn bg-input/50 hover:bg-tertiary text-left shadow shadow-ungu"
           }
           end
           to="/admin"
         >
           home
         </NavLink>
+
         <NavLink
           className={({ isActive }) =>
             isActive
-              ? "btn btn-primary text-left"
-              : "btn bg-tertiary text-left shadow shadow-violet-800"
-          }
-          to="/admin/projects"
-        >
-          projects
-        </NavLink>
-        <NavLink
-          className={({ isActive }) =>
-            isActive
-              ? "btn btn-primary text-left"
-              : "btn bg-tertiary text-left shadow shadow-violet-800"
+              ? "btn bg-ungu hover:bg-tertiary text-left"
+              : "btn bg-input/50 hover:bg-tertiary text-left shadow shadow-ungu"
           }
           to="/admin/blogs"
         >
-          blogs
+          blog
+        </NavLink>
+
+        <NavLink
+          className={({ isActive }) =>
+            isActive
+              ? "btn bg-ungu hover:bg-tertiary text-left"
+              : "btn bg-input/50 hover:bg-tertiary text-left shadow shadow-ungu"
+          }
+          to="/admin/projects"
+        >
+          project
         </NavLink>
         <div
           onClick={logout}
-          className="bg-violet-700/20 py-2 px-4 rounded-lg mt-auto flex justify-center items-center gap-2 cursor-pointer"
+          className="bg-[#001122] py-2 px-4 rounded-lg mt-auto flex justify-center items-center gap-2 cursor-pointer"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -80,7 +82,7 @@ const Sidebar = () => {
         </div>
         <label
           onClick={() => setIsOpen(!isOpen)}
-          className="btn btn-primary drawer-button m-4 absolute -right-[90px] -top-2 lg:hidden"
+          className="btn bg-ungu hover:bg-tertiary drawer-button m-4 absolute -right-[80px] -top-2 lg:hidden"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"

@@ -14,6 +14,7 @@ const CardBlog = ({
   const navigate = useNavigate();
   const baseUrl = import.meta.env.VITE_APP_BASE_URL;
   const [modal, setModal] = useState(false);
+
   async function handleDelete(_id) {
     try {
       const response = await fetch(`${baseUrl}/post/${_id}`, {
@@ -33,8 +34,9 @@ const CardBlog = ({
       console.error("Terjadi kesalahan saat menghapus postingan:", error);
     }
   }
+
   return (
-    <div className=" relative w-full md:w-[45%] p-4 bg-tertiary rounded shadow shadow-violet-700">
+    <div className=" relative w-full md:w-[45%] xl:w-[30%] p-4 bg-input/90 rounded shadow shadow-violet-700">
       <img
         className="w-full h-[200px] object-cover rounded"
         src={`${baseUrl}/${cover}`}
@@ -42,12 +44,16 @@ const CardBlog = ({
       />
       <h1
         onClick={() => navigate(`/blog/${_id}`)}
-        className="cursor-pointer font-bold line-clamp-1 mt-2 text-xl"
+        className="cursor-pointer font-bold line-clamp-1 mt-3 text-xl text-white mb-1"
       >
         {title}
       </h1>
-      <p className="text-sm my-2 line-clamp-3">{summary}</p>
-      <div className="flex gap-2">
+
+      <div
+        className="text-sm leading-6 li line-clamp-4"
+        dangerouslySetInnerHTML={{ __html: summary }}
+      />
+      <div className="flex gap-2 mt-2">
         {categories?.map((cat, i) => {
           return (
             <p
@@ -69,7 +75,7 @@ const CardBlog = ({
         viewBox="0 0 24 24"
         strokeWidth={1.5}
         stroke="currentColor"
-        className="w-7 h-7 cursor-pointer absolute -top-2 -right-2 hover:scale-[1.2] transition"
+        className="w-7 h-7 cursor-pointer glass p-1 rounded text-white absolute top-1 left-1 hover:scale-[1.2] transition"
         onClick={() => navigate(`${_id}/edit`)}
       >
         <path
@@ -79,7 +85,7 @@ const CardBlog = ({
         />
       </svg>
       <div
-        className="absolute p-1 rounded cursor-pointer -top-2 -left-2 z-10"
+        className="absolute glass p-1 rounded text-white cursor-pointer top-1 right-1 z-10"
         onClick={() => setModal(true)}
       >
         <svg
@@ -97,20 +103,22 @@ const CardBlog = ({
         </svg>
       </div>
       {modal && (
-        <div className="fixed top-0 bottom-0 left-0 right-0 bg-black/50 z-20 flex justify-center items-center">
-          <div className="w-[400px] bg-secondary rounded text-primary p-4">
-            <h1>
-              yakin ingin menghapus{" "}
-              <span className="font-semibold"> {title}?</span>
+        <div className="fixed top-0 bottom-0 left-0 right-0 z-50 bg-black/40 flex justify-center items-center">
+          <div className="w-[400px] rounded bg-ungu text-white p-4">
+            <h1 className="text-xl">
+              yakin ingin menghapus <span className="font-bold"> {title}?</span>
             </h1>
             <div className="mt-4">
               <button
                 onClick={() => handleDelete(_id)}
-                className="btn btn-error"
+                className="py-2 px-4 rounded bg-red-700 text-white text-sm font-semibold"
               >
                 hapus
               </button>
-              <button onClick={() => setModal(false)} className="btn btn-ghost">
+              <button
+                onClick={() => setModal(false)}
+                className="btn btn-ghost btn-sm"
+              >
                 cancel
               </button>
             </div>

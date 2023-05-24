@@ -97,7 +97,7 @@ export default function DetailPost() {
   if (!postInfo) return "";
 
   return (
-    <div className="bg-primary py-20 pt-36 px-4 min-h-screen">
+    <div className="bg-hero-pattern bg-cover bg-fixed py-20 pt-36 px-4 min-h-screen">
       <Navbar />
       <div className="container gap-10 justify-center mx-auto flex flex-wrap">
         <div className="md:flex-[0.8]">
@@ -172,7 +172,7 @@ export default function DetailPost() {
             </>
           )}
         </div>
-        <div className="w-full lg:w-[300px]  text-secondary self-start sticky top-36 border-t-2 border-secondary pt-1">
+        <div className="w-full lg:w-[300px]  text-secondary self-start sticky top-36">
           <h1 className="text-xl font-semibold">Other Post</h1>
           <div className="flex gap-2 mt-1">
             <div className="w-[40%] h-2 bg-secondary/50 rounded-lg"></div>

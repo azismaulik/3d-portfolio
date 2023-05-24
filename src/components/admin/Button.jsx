@@ -6,7 +6,7 @@ const Button = ({ label, icon, to }) => {
   return (
     <button
       onClick={() => navigate(`${to}`)}
-      className="btn btn-primary drawer-button m-4 flex items-center justify-center gap-2"
+      className="btn bg-ungu hover:bg-tertiary drawer-button m-4 flex items-center justify-center gap-2"
     >
       {icon}
       {label}

@@ -85,8 +85,11 @@ const Create = () => {
   }
 
   return (
-    <div className="w-full min-h-screen bg-primary flex justify-center">
-      <form onSubmit={createNewPost} className="w-[1000px] p-4 mt-[100px]">
+    <div className="w-full min-h-screen md:p-10 bg-bg-form bg-cover bg-fixed flex justify-center">
+      <form
+        onSubmit={createNewPost}
+        className="w-[1000px] bg-input/50 md:glass p-4 md:p-8 md:rounded"
+      >
         <div className="flex items-center justify-between">
           <BackMenu />
           <p className="text-sm font-semibold cursor-pointer" onClick={logout}>
@@ -94,7 +97,7 @@ const Create = () => {
           </p>
         </div>
         <div className="w-full my-4">
-          <label className="font-bold">
+          <label className="text-sm text-white">
             Image <span className="text-xs font-normal">*ukuran kecil</span>
           </label>
           <div
@@ -149,12 +152,12 @@ const Create = () => {
           </div>
         </div>
         <div className="w-full my-4 ">
-          <label className="font-bold">Category</label>
+          <label className="text-sm text-white">Category</label>
           <input
             type="text"
             onChange={handleCategoryChange}
             value={selectedCategory}
-            className="w-full p-2 rounded my-2 bg-tertiary text-white text-sm border border-secondary"
+            className="w-full p-2 rounded my-2 bg-input text-white text-sm border border-secondary"
             placeholder="Categories"
           />
           <div className="flex gap-2 items-center ">
@@ -180,35 +183,28 @@ const Create = () => {
           </div>
         </div>
         <div className="w-full my-4 ">
-          <label className="font-bold">Title</label>
+          <label className="text-sm text-white">Title</label>
           <input
             type="text"
-            className="w-full p-2 rounded my-2 bg-tertiary text-white text-sm border border-secondary"
+            className="w-full p-2 rounded my-2 bg-input text-white text-sm border border-secondary"
             placeholder="Title"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             required
           />
         </div>
+
         <div className="w-full my-4">
-          <label className="font-bold">Summary</label>
-          <input
-            type="text"
-            className="w-full p-2 rounded my-2 bg-tertiary text-white text-sm border border-secondary"
-            placeholder="summary"
-            value={summary}
-            onChange={(e) => setSummary(e.target.value)}
-            required
-          />
+          <label className="text-sm text-white">Summary</label>
+          <Editor value={summary} onChange={setSummary} required />
         </div>
 
         <div className="w-full my-4">
-          <label className="font-bold">Content</label>
+          <label className="text-sm text-white">Content</label>
           <Editor value={content} onChange={setContent} required />
         </div>
-        <button className="text-center w-full bg-tertiary rounded p-2">
-          Add
-        </button>
+
+        <button className="text-center w-full bg-input rounded p-2">Add</button>
       </form>
     </div>
   );

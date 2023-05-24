@@ -92,7 +92,6 @@ const EditPost = () => {
   };
 
   if (redirect) {
-    // return <Navigate to={"/blog/" + id} />;
     return (
       <Navigate
         to={
@@ -115,13 +114,16 @@ const EditPost = () => {
   }
 
   return (
-    <div className="w-full min-h-screen bg-primary flex justify-center">
+    <div className="w-full min-h-screen md:p-10 bg-bg-form bg-cover bg-fixed flex justify-center">
       {isLoading ? (
         <div className="w-full min-h-screen flex justify-center items-center">
           <span className="loader"></span>
         </div>
       ) : (
-        <form onSubmit={updatePost} className="w-[1000px] p-4 mt-[100px]">
+        <form
+          onSubmit={updatePost}
+          className="w-[1000px] p-4 md:p-8 bg-input/50 md:glass rounded"
+        >
           <div className="flex items-center justify-between">
             <Link to={-1} className="flex items-center">
               <svg
@@ -145,11 +147,11 @@ const EditPost = () => {
             </p>
           </div>
           <div className="w-full my-4">
-            <label className="font-bold">
+            <label className="text-sm text-white">
               Image <span className="text-xs font-normal">*ukuran kecil</span>
             </label>
             <div
-              className="w-full h-[350px] flex justify-center items-center rounded border my-2 border-dashed border-secondary relative
+              className="w-full h-[350px] flex justify-center items-center rounded border my-2 border-dashed border-white relative
           "
             >
               {image && (
@@ -202,12 +204,12 @@ const EditPost = () => {
             </div>
           </div>
           <div className="w-full my-4 ">
-            <label className="font-bold">Category</label>
+            <label className="text-sm text-white">Category</label>
             <input
               type="text"
               onChange={handleCategoryChange}
               value={selectedCategory}
-              className="w-full p-2 rounded my-2 bg-tertiary text-white text-sm border border-secondary"
+              className="w-full p-2 rounded my-2 bg-input text-white text-sm border border-white"
               placeholder="Categories"
             />
             <div className="flex gap-2 items-center ">
@@ -223,7 +225,7 @@ const EditPost = () => {
                 {categories.map((category, index) => (
                   <div
                     key={index}
-                    className="text-xs relative px-2 border self-center border-secondary rounded-full"
+                    className="text-xs relative px-2 border self-center border-white rounded-full"
                   >
                     {category}{" "}
                     <button onClick={() => removeCategory(index)}>x</button>
@@ -233,33 +235,28 @@ const EditPost = () => {
             </div>
           </div>
           <div className="w-full my-4 ">
-            <label className="font-bold">Title</label>
+            <label className="text-sm text-white">Title</label>
             <input
               type="text"
-              className="w-full p-2 rounded my-2 bg-tertiary text-white text-sm border border-secondary"
+              className="w-full p-2 rounded my-2 bg-input text-white text-sm border border-white"
               placeholder="Title"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               required
             />
           </div>
+
           <div className="w-full my-4">
-            <label className="font-bold">Summary</label>
-            <input
-              type="text"
-              className="w-full p-2 rounded my-2 bg-tertiary text-white text-sm border border-secondary"
-              placeholder="summary"
-              value={summary}
-              onChange={(e) => setSummary(e.target.value)}
-              required
-            />
+            <label className="text-sm text-white">Content</label>
+            <Editor value={summary} onChange={setSummary} required />
           </div>
 
           <div className="w-full my-4">
-            <label className="font-bold">Content</label>
+            <label className="text-sm text-white">Content</label>
             <Editor value={content} onChange={setContent} required />
           </div>
-          <button className="text-center w-full bg-tertiary rounded p-2">
+
+          <button className="text-center w-full bg-input text-bold text-white rounded p-2">
             Update
           </button>
         </form>

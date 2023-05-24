@@ -39,7 +39,9 @@ const CardPost = ({
   return (
     <>
       {modal && (
-        <div className="fixed top-0 bottom-0 left-0 right-0 z-20 bg-black/60 flex justify-center items-center">
+        <div
+          className={`fixed top-0 bottom-0 left-0 right-0 z-20 bg-black-60 flex justify-center items-center`}
+        >
           <div className="w-[400px] bg-secondary rounded text-primary p-4">
             <h1>
               yakin ingin menghapus{" "}
@@ -67,18 +69,42 @@ const CardPost = ({
           ease: "easeInOut",
           duration: 1,
         }}
-        className="w-[400px] bg-tertiary my-4 rounded-md relative"
+        className={`w-[400px] ${
+          window.location.href.includes("blog")
+            ? "glass"
+            : "bg-input/60 shadow shadow-violet-900"
+        } my-4 rounded-md relative`}
       >
         {myCookie && (
+          <div className="absolute p-1 rounded glass cursor-pointer top-2 left-2 z-10">
+            <Link className="edit-btn" to={`/blog/edit/${_id}`}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="text-white w-6 h-6"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"
+                />
+              </svg>
+            </Link>
+          </div>
+        )}
+        {myCookie && (
           <div
-            className="absolute p-1 rounded bg-tertiary cursor-pointer top-2 right-2 z-10"
+            className="absolute p-1 rounded glass cursor-pointer top-2 right-2 z-10"
             onClick={() => setModal(true)}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               xmlnsXlink="http://www.w3.org/1999/xlink"
               viewBox="0 0 20 20"
-              className="w-6"
+              className="text-white w-6"
             >
               <g fill="none">
                 <path
@@ -98,11 +124,11 @@ const CardPost = ({
             alt={title}
           />
         </Link>
-        <div className="p-4 text flex flex-col justify-center gap-3">
+        <div className="p-4 text flex flex-col justify-center gap-1">
           <div className="flex gap-2">
             {categories?.map((cat, i) => (
               <p
-                className={`text-[10px] py-1 px-3 rounded-full border border-secondary`}
+                className={`text-[10px] my-1 px-3 rounded-full border border-secondary`}
                 key={i}
               >
                 {cat}
@@ -110,14 +136,22 @@ const CardPost = ({
             ))}
           </div>
           <Link to={`/blog/${_id}`}>
-            <h1 className="text-lg font-semibold">{title}</h1>
+            <h1 className="text-white text-lg font-semibold capitalize">
+              {title}
+            </h1>
           </Link>
-          <p className="line-clamp-4 text-sm">{summary}</p>
-          <Link to={`/blog/${_id}`} className="text-sm italic underline">
+          <div
+            className="text-sm line-clamp-4"
+            dangerouslySetInnerHTML={{ __html: summary }}
+          />
+          <Link
+            to={`/blog/${_id}`}
+            className="text-xs mt-2 italic text-white underline"
+          >
             Read more {"->"}
           </Link>
 
-          <div className="flex justify-between mt-4">
+          <div className="flex text-sm justify-between mt-4">
             <p>By: {author.username}</p>
             <p>{format(new Date(createdAt), "d-MM-yyyy ")}</p>
           </div>

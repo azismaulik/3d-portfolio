@@ -1,32 +1,10 @@
 import React, { useState, useEffect } from "react";
-import Sidebar from "./SIdebar";
+import Sidebar from "../../components/admin/SIdebar";
 import Header from "../../components/admin/Header";
 import Button from "../../components/admin/Button";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import CardBlog from "../../components/admin/CardBlog";
-
-const Modal = () => {
-  <div className="fixed top-0 bottom-0 left-0 right-0 bg-black/5 flex justify-center items-center">
-    <div className="w-[400px] bg-secondary rounded text-primary p-4">
-      <h1>
-        yakin ingin menghapus{" "}
-        <span className="font-semibold"> {blog.title}?</span>
-      </h1>
-      <div className="mt-4">
-        <button
-          onClick={() => handleDelete(blog._id)}
-          className="btn btn-error"
-        >
-          hapus
-        </button>
-        <button onClick={() => setModal(false)} className="btn btn-ghost">
-          cancel
-        </button>
-      </div>
-    </div>
-  </div>;
-};
 
 const Blogs = () => {
   const baseUrl = import.meta.env.VITE_APP_BASE_URL;
@@ -59,7 +37,7 @@ const Blogs = () => {
   return (
     <div className="flex w-full min-h-screen">
       <Sidebar />
-      <div className="w-full min-h-screen flex-1 bg-primary">
+      <div className="w-full min-h-screen flex-1 overflow-auto bg-primary">
         <Header text="Blogs" />
 
         <div className="container mx-auto">
@@ -90,7 +68,7 @@ const Blogs = () => {
               <span className="loader"></span>
             </div>
           ) : (
-            <div className="flex flex-wrap gap-4 p-4 justify-evenly">
+            <div className="flex flex-wrap gap-4 md:gap-8 p-4">
               {blogs.map((blog, i) => (
                 <CardBlog key={i} {...blog} />
               ))}

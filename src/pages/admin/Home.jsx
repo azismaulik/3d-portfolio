@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Sidebar from "./SIdebar";
+import Sidebar from "../../components/admin/SIdebar";
 import Header from "../../components/admin/Header";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
@@ -38,7 +38,7 @@ const Home = () => {
       <Sidebar />
       <div className="text-secondary w-full min-h-screen overflow-auto flex-1 bg-primary">
         <Header text="Welcome Back Azis" />
-        <div className="container mx-auto h-full bg-secondary"></div>
+        <div className="container mx-auto h-full"></div>
       </div>
     </div>
   );

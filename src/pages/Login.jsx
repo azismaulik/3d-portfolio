@@ -1,5 +1,5 @@
-import { useContext, useState, useEffect } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useContext, useState } from "react";
+import { Navigate } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
 import Cookies from "js-cookie";
 
@@ -10,8 +10,6 @@ const Login = () => {
   const [redirect, setRedirect] = useState(false);
   const { setUserInfo } = useContext(UserContext);
   const myCookie = Cookies.get("token");
-
-  const navigate = useNavigate;
 
   const baseurl = import.meta.env.VITE_APP_BASE_URL;
 
@@ -44,23 +42,26 @@ const Login = () => {
     return <Navigate to="/" />;
   }
   return (
-    <div className="w-full min-h-screen bg-primary flex justify-center">
-      <form className="w-[500px] p-4 mt-[100px]" onSubmit={login}>
+    <div className="w-full min-h-screen flex justify-center md:items-center bg-bg-form bg-cover bg-no-repeat">
+      <form
+        className="w-[500px] mt-32 md:mt-0 rounded-lg md:glass py-10 px-4"
+        onSubmit={login}
+      >
         <div className="w-full my-4 ">
-          <label className="font-bold">username</label>
+          <label className="font-bold text-white">username</label>
           <input
             type="text"
-            className="w-full p-2 rounded my-2 bg-tertiary text-white text-sm border border-secondary"
+            className="w-full p-2 rounded my-2 bg-input text-white text-sm border border-secondary"
             placeholder="username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
           />
         </div>
         <div className="w-full my-4 relative">
-          <label className="font-bold">password</label>
+          <label className="font-bold text-white">password</label>
           <input
             type={show ? "text" : "password"}
-            className="w-full p-2 rounded my-2 bg-tertiary text-white text-sm border border-secondary"
+            className="w-full p-2 rounded my-2 bg-input text-white text-sm border border-secondary"
             placeholder="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
@@ -94,7 +95,7 @@ const Login = () => {
             </svg>
           )}
         </div>
-        <button className="text-center w-full bg-tertiary rounded p-2">
+        <button className="text-center w-full bg-input rounded p-2 border border-ungu md:border-none">
           Login
         </button>
       </form>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Sidebar from "./SIdebar";
+import Sidebar from "../../components/admin/SIdebar";
 import Header from "../../components/admin/Header";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
@@ -37,10 +37,10 @@ const Projects = () => {
   return (
     <div className="flex w-full min-h-screen">
       <Sidebar />
-      <div className="w-full min-h-screen flex-1 bg-primary">
+      <div className="w-full min-h-screen flex-1 overflow-auto bg-primary">
         <Header text="Projects" />
 
-        <div className="container mx-auto">
+        <div className="container flex-1 mx-auto">
           <Button
             icon={
               <svg
@@ -63,9 +63,15 @@ const Projects = () => {
             label="add Project"
             to="create"
           />
-          {loading && (
+          {loading ? (
             <div className="flex justify-center items-center w-full h-[40vh]">
               <span className="loader"></span>
+            </div>
+          ) : (
+            <div className="flex flex-wrap gap-4 md:gap-8 p-4">
+              {projects.map((project, i) => (
+                <CardProject key={i} {...project} />
+              ))}
             </div>
           )}
           {!projects.length && !loading && (
@@ -75,11 +81,6 @@ const Projects = () => {
               </h1>
             </div>
           )}
-          <div className="flex flex-wrap gap-4 p-4 justify-evenly">
-            {projects.map((project, i) => (
-              <CardProject key={i} {...project} />
-            ))}
-          </div>
         </div>
       </div>
     </div>

@@ -27,16 +27,16 @@ const CardProject = ({ title, description, image, tag, _id }) => {
   return (
     <div
       key={_id}
-      className=" relative w-full md:w-[45%] p-4 bg-tertiary rounded shadow shadow-violet-700"
+      className=" relative w-full md:max-w-[45%] xl:max-w-[30%] p-4 bg-input/90 rounded shadow shadow-violet-700"
     >
       <img
         className="w-full h-[200px] object-cover rounded"
         src={`${baseUrl}/${image}`}
         alt=""
       />
-      <h1 className="font-bold mt-4">{title}</h1>
+      <h1 className="font-bold mt-4 text-xl text-white">{title}</h1>
       <div
-        className="text-sm leading-6 li"
+        className="text-sm leading-6 li line-clamp-5 mt-2"
         dangerouslySetInnerHTML={{ __html: description }}
       />
       <div className="flex gap-2 mt-2">
@@ -54,7 +54,7 @@ const CardProject = ({ title, description, image, tag, _id }) => {
         viewBox="0 0 24 24"
         strokeWidth={1.5}
         stroke="currentColor"
-        className="w-7 h-7 cursor-pointer absolute -top-2 -right-2 hover:scale-[1.2] transition"
+        className="w-7 h-7 cursor-pointer glass p-1 rounded text-white absolute top-1 left-1 hover:scale-[1.2] transition"
         onClick={() => navigate(`${_id}/edit`)}
       >
         <path
@@ -64,14 +64,14 @@ const CardProject = ({ title, description, image, tag, _id }) => {
         />
       </svg>
       <div
-        className="absolute p-1 rounded cursor-pointer -top-2 -left-2 z-10"
+        className="absolute cursor-pointer glass p-1 rounded text-white top-1 right-1 z-10"
         onClick={() => setModal(true)}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           xmlnsXlink="http://www.w3.org/1999/xlink"
           viewBox="0 0 20 20"
-          className="w-6"
+          className="w-5"
         >
           <g fill="none">
             <path
@@ -82,20 +82,22 @@ const CardProject = ({ title, description, image, tag, _id }) => {
         </svg>
       </div>
       {modal && (
-        <div className="fixed top-0 bottom-0 left-0 right-0 z-20 bg-black/40 flex justify-center items-center">
-          <div className="w-[400px] bg-secondary rounded text-primary p-4">
-            <h1>
-              yakin ingin menghapus{" "}
-              <span className="font-semibold"> {title}?</span>
+        <div className="fixed top-0 bottom-0 left-0 right-0 z-50 bg-black/40 flex justify-center items-center">
+          <div className="w-[400px] rounded bg-ungu text-white p-4">
+            <h1 className="text-xl">
+              yakin ingin menghapus <span className="font-bold"> {title}?</span>
             </h1>
             <div className="mt-4">
               <button
                 onClick={() => handleDelete(_id)}
-                className="btn btn-error"
+                className="py-2 px-4 rounded bg-red-700 text-white text-sm font-semibold"
               >
                 hapus
               </button>
-              <button onClick={() => setModal(false)} className="btn btn-ghost">
+              <button
+                onClick={() => setModal(false)}
+                className="btn btn-ghost btn-sm"
+              >
                 cancel
               </button>
             </div>

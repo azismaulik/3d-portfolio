@@ -31,14 +31,14 @@ const BlogList = () => {
   }, []);
 
   return (
-    <div className="bg-primary py-20 md:pt-40 px-4 min-h-screen">
+    <div className="bg-hero-pattern bg-cover bg-fixed py-20 md:pt-40 px-4 min-h-screen">
       <Navbar />
-      <h1 className="text-center font-extrabold text-transparent text-3xl bg-clip-text bg-gradient-to-r from-purple-900 to-pink-800 my-6">
+      <h1 className="text-center font-extrabold text-transparent text-3xl bg-clip-text bg-gradient-to-r from-[#4D4F59] to-white mb-8">
         My Blog
       </h1>
       {myCookie && (
         <div className="flex justify-center">
-          <Link className="px-4 py-2 rounded bg-tertiary" to="create">
+          <Link className="px-4 py-2 rounded glass" to="create">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               xmlnsXlink="http://www.w3.org/1999/xlink"

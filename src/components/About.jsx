@@ -33,7 +33,7 @@ const About = () => {
               <img
                 src={social.img}
                 alt=""
-                className="object-cover w-10 hover:scale-125 transition"
+                className="object-cover w-10 hover:scale-125 transition animate-bounce"
               />
             </a>
           ))}
@@ -43,10 +43,12 @@ const About = () => {
           {services.map((service, index) => (
             <div
               key={index}
-              className="rounded-lg bg-[#1d1836] gap-2 p-2 flex flex-col justify-center items-center w-40 h-40 border border-secondary"
+              className="rounded-lg bg-input/50 shadow shadow-violet-800 gap-2 p-4 flex flex-col justify-center items-center w-[40%] md:w-40 md:h-40"
             >
               <img className="w-14" src={service.icon} alt="" />
-              <h1 className="text-center text-sm">{service.title}</h1>
+              <h1 className="text-center text-sm text-white">
+                {service.title}
+              </h1>
             </div>
           ))}
         </div>
@@ -55,4 +57,4 @@ const About = () => {
   );
 };
 
-export default SectionWrapper(About, 'about');
+export default SectionWrapper(About, "about");
