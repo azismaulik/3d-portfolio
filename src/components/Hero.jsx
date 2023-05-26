@@ -10,13 +10,16 @@ const Hero = () => {
         className={`absolute inset-0 top-[120px]  max-w-7xl mx-auto ${styles.paddingX} flex flex-row items-start gap-5`}
       >
         <div className="flex flex-col justify-center items-center mt-5">
-          <div className="w-5 h-5 rounded-full bg-[#A437DB]" />
+          <div className="w-5 h-5 rounded-full bg-[#7c3aed]" />
           <div className="w-1 sm:h-80 h-40 violet-gradient" />
         </div>
 
         <div className="mt-8">
           <h1 className={`${styles.heroHeadText} text-white`}>
-            Hi, I'm <span className="text-[#A437DB]">Azis</span>
+            Hi, I'm{" "}
+            <span className="font-extrabold text-transparent sm:text-8xl bg-clip-text bg-gradient-to-r from-purple-800 to-fuchsia-600">
+              Azis
+            </span>
           </h1>
 
           <h1 className="inline md:text-xl font-semibold">and I'm a </h1>
@@ -25,7 +28,7 @@ const Hero = () => {
             eraseDelay={1000}
             eraseSpeed={100}
             typingDelay={100}
-            className="text-xl font-semibold text-[#A437DB]"
+            className="text-xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-800 to-fuchsia-600"
             text={["Web developer", "UI / UX Designer"]}
           />
         </div>

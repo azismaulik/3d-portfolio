@@ -163,16 +163,20 @@ const Works = () => {
 
   return (
     <section id="projects">
-      <div className="p-8 xl:p-0 mt-20">
+      <div className="p-2 xl:p-0 mt-10 sm:mt-20">
         <motion.div variants={textVariant()}>
-          <p className={`${styles.sectionSubText} `}>My work</p>
-          <h2 className={`${styles.sectionHeadText}`}>Projects.</h2>
+          <p className={`${styles.sectionSubText} text-center sm:text-left`}>
+            My work
+          </p>
+          <h2 className={`${styles.sectionHeadText} text-center sm:text-left`}>
+            Projects.
+          </h2>
         </motion.div>
 
         <div className="w-full flex">
           <motion.p
             variants={fadeIn("", "", 0.1, 1)}
-            className="mt-3 text-secondary text-[17px] max-w-5xl leading-[30px]"
+            className="mt-3 text-secondary text-sm sm:text-[17px] text-center sm:text-left max-w-5xl leading-6 sm:leading-[30px]"
           >
             Following projects showcases my skills and experience through
             real-world examples of my work. Each project is briefly described
@@ -207,7 +211,7 @@ const Works = () => {
 
         {!projects.length && !loading && (
           <div className="w-full h-[10vh] flex justify-center items-center">
-            <h1 className="text-secondary text-xl font-bold">
+            <h1 className="text-secondary text-xl font-bold text-center">
               Project tidak ada / Kesalahan server
             </h1>
           </div>

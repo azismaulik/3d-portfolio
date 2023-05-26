@@ -34,7 +34,7 @@ const SectionBlog = () => {
       <h2 className={`${styles.sectionHeadText} text-center`}>
         My Recent Blog.
       </h2>
-      <div className="mt-10 flex justify-center flex-wrap gap-4">
+      <div className="mt-10 flex justify-center flex-wrap gap-4 p-8">
         {loading ? (
           <div className="w-full h-[300px] flex justify-center items-center">
             <span className="loader"></span>
@@ -58,8 +58,8 @@ const SectionBlog = () => {
         </div>
       )}
       {!blog.length && !loading && (
-        <div className="w-full h-[200px] flex justify-center">
-          <h1 className="text-xl text-secondary font-bold">
+        <div className="w-full h-[200px] flex justify-center p-2">
+          <h1 className="text-xl text-secondary font-bold text-center">
             Tidak Ada Blog / Terjadi Kesalahan Server
           </h1>
         </div>

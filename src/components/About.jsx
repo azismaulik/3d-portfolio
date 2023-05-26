@@ -9,15 +9,19 @@ import { SectionWrapper } from "../hoc";
 const About = () => {
   return (
     <section id="about">
-      <div className="p-8 xl:p-0">
+      <div className="p-2 xl:p-0">
         <motion.div variants={textVariant()}>
-          <p className={styles.sectionSubText}>Introduction</p>
-          <h2 className={styles.sectionHeadText}>Overview.</h2>
+          <p className={`${styles.sectionSubText} text-center sm:text-left`}>
+            Introduction
+          </p>
+          <h2 className={`${styles.sectionHeadText} text-center sm:text-left`}>
+            Overview.
+          </h2>
         </motion.div>
 
         <motion.p
           variants={fadeIn("", "", 0.1, 1)}
-          className="mt-4 text-secondary text-[17px] max-w-5xl leading-[30px]"
+          className="mt-4 text-secondary text-sm text-center sm:text-left sm:text-[17px] max-w-5xl leading-6 sm:leading-[30px]"
         >
           I'm a skilled Web developer with experience in JavaScript or
           Wordpress, and expertise in frameworks like React.js and vue.js. And
@@ -27,7 +31,7 @@ const About = () => {
           your ideas to life!
         </motion.p>
 
-        <div className="flex gap-8 mt-8">
+        <div className="flex gap-8 mt-8 justify-center sm:justify-start">
           {socials.map((social, index) => (
             <a key={index} href={social.link} target="_blank">
               <img
@@ -39,7 +43,7 @@ const About = () => {
           ))}
         </div>
 
-        <div className="mt-6 md:mt-10 flex flex-wrap gap-10">
+        <div className="mt-6 md:mt-10 flex flex-wrap gap-10 justify-center sm:justify-start">
           {services.map((service, index) => (
             <div
               key={index}

@@ -148,6 +148,7 @@ const Create = () => {
               type="file"
               className="w-full h-full absolute top-0 p-2 rounded my-2 cursor-pointer opacity-0"
               onChange={handleImageChange}
+              required
             />
           </div>
         </div>
@@ -159,6 +160,7 @@ const Create = () => {
             value={selectedCategory}
             className="w-full p-2 rounded my-2 bg-input text-white text-sm border border-secondary"
             placeholder="Categories"
+            required
           />
           <div className="flex gap-2 items-center ">
             {selectedCategory && (

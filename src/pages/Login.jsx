@@ -95,7 +95,10 @@ const Login = () => {
             </svg>
           )}
         </div>
-        <button className="text-center w-full bg-input rounded p-2 border border-ungu md:border-none">
+        <button
+          disabled={!username && !password ? true : false}
+          className="text-center w-full bg-[#00275C] rounded p-2 border border-ungu md:border-none disabled:cursor-not-allowed"
+        >
           Login
         </button>
       </form>
