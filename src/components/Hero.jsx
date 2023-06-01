@@ -17,7 +17,7 @@ const Hero = () => {
         <div className="mt-8">
           <h1 className={`${styles.heroHeadText} text-white`}>
             Hi, I'm{" "}
-            <span className="font-extrabold text-transparent sm:text-8xl bg-clip-text bg-gradient-to-r from-purple-800 to-fuchsia-600">
+            <span className="font-extrabold text-transparent sm:text-8xl bg-clip-text bg-gradient-to-r from-[#7c3aed] to-fuchsia-600">
               Azis
             </span>
           </h1>
@@ -28,7 +28,7 @@ const Hero = () => {
             eraseDelay={1000}
             eraseSpeed={100}
             typingDelay={100}
-            className="text-xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-800 to-fuchsia-600"
+            className="text-xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#7c3aed] to-fuchsia-600"
             text={["Web developer", "UI / UX Designer"]}
           />
         </div>

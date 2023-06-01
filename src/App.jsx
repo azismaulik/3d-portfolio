@@ -25,6 +25,7 @@ import Projects from "./pages/admin/Projects";
 import Blogs from "./pages/admin/Blogs";
 import CreateProject from "./pages/admin/CreateProject";
 import EditProject from "./pages/admin/EditProject";
+import Playgrounds from "./pages/Playgrounds";
 
 const App = () => {
   return (
@@ -60,6 +61,7 @@ const App = () => {
           <Route path="/admin" element={<Home />} />
           <Route path="/admin/blogs" element={<Blogs />} />
           <Route path="/admin/projects" element={<Projects />} />
+          <Route path="/playgrounds" element={<Playgrounds />} />
           <Route path="/admin/blogs/create" element={<CreateBlog />} />
           <Route path="/admin/projects/create" element={<CreateProject />} />
           <Route path="/admin/blogs/:id/edit" element={<EditPost />} />

@@ -31,7 +31,7 @@ const BlogList = () => {
   }, []);
 
   return (
-    <div className="bg-hero-pattern bg-cover bg-fixed py-20 md:pt-40 px-4 min-h-screen">
+    <div className="bg-hero-pattern bg-cover bg-fixed py-20 pt-32 md:pt-40 px-4 min-h-screen">
       <Navbar />
       <h1 className="text-center font-extrabold text-transparent text-3xl bg-clip-text bg-gradient-to-r from-[#4D4F59] to-white mb-8">
         My Blog

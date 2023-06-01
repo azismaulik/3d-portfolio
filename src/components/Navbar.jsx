@@ -74,13 +74,23 @@ const Navbar = () => {
           ))}
           <li
             className={`${
+              window.location.href.includes("playgrounds")
+                ? "text-[#A437DB]"
+                : "text-white/80"
+            }
+                   hover:text-[#A437DB] text-[18px] font-medium cursor-pointer`}
+          >
+            <a href="/playgrounds">Playgrounds</a>
+          </li>
+          <li
+            className={`${
               window.location.href.includes("blog")
                 ? "text-[#A437DB]"
                 : "text-white/80"
             }
              hover:text-[#A437DB] text-[18px] font-medium cursor-pointer`}
           >
-            <a href="/blog">blog</a>
+            <a href="/blog">Blog</a>
           </li>
           {myCookie && (
             <div className="dropdown dropdown-end">
@@ -149,7 +159,13 @@ const Navbar = () => {
                 </li>
               ))}
               <li
-                className="text-secondary
+                className="text-white
+             hover:text-white text-[18px] font-medium cursor-pointer"
+              >
+                <a href="/playgrounds">Playgrounds</a>
+              </li>
+              <li
+                className="text-white
              hover:text-white text-[18px] font-medium cursor-pointer"
               >
                 <a href="/blog">blog</a>
@@ -157,7 +173,7 @@ const Navbar = () => {
               {myCookie && (
                 <li
                   onClick={logout}
-                  className="text-secondary
+                  className="text-white
              hover:text-white text-[18px] font-medium cursor-pointer"
                 >
                   <a>Logout</a>
