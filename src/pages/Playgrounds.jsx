@@ -38,7 +38,7 @@ const Playgrounds = () => {
         <h1 className="text-center font-extrabold text-transparent text-3xl bg-clip-text bg-gradient-to-r from-[#4D4F59] to-white mb-8">
           Playgrounds
         </h1>
-        <div className="flex gap-6 flex-wrap">
+        <div className="flex gap-16 flex-wrap">
           <div className="flex gap-1">
             <HexColorPicker color={color} onChange={setColor} />
             {color && (

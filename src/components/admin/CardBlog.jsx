@@ -66,7 +66,7 @@ const CardBlog = ({
         })}
       </div>
       <div className="mt-4 text-xs text-white/90 font-semibold font-pangolin flex justify-between items-center">
-        <p>By {author.username}</p>
+        <p>By {author?.username}</p>
         <p>{format(new Date(createdAt), "d-MM-yyyy ")}</p>
       </div>
       <svg

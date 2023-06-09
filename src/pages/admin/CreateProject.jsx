@@ -156,7 +156,6 @@ const CreateProject = () => {
             value={selectedCategory}
             className="w-full p-2 rounded my-2 bg-input text-white text-sm border border-white"
             placeholder="Tag"
-            required
           />
           <div className="flex gap-2 items-center ">
             {selectedCategory && (

@@ -152,7 +152,7 @@ const CardPost = ({
           </Link>
 
           <div className="flex text-sm justify-between mt-4">
-            <p>By: {author.username}</p>
+            <p>By: {author?.username}</p>
             <p>{format(new Date(createdAt), "d-MM-yyyy ")}</p>
           </div>
         </div>
