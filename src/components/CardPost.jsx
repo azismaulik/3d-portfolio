@@ -26,7 +26,7 @@ const CardPost = ({ _id, title, summary, cover, createdAt, categories }) => {
           <img
             className=" object-cover object-top w-full h-[250px] rounded-t-md"
             loading="lazy"
-            src={`${baseurl}/${cover}`}
+            src={cover}
             alt={title}
           />
         </Link>

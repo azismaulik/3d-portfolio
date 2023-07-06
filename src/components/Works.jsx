@@ -4,11 +4,8 @@ import { motion } from "framer-motion";
 import { styles } from "../styles";
 import { fadeIn, textVariant } from "../utils/motion";
 import { SectionWrapper } from "../hoc";
-import { useNavigate } from "react-router-dom";
 
 const CardProject = ({ title, description, link, _id, image, tag }) => {
-  const [modal, setModal] = useState(false);
-  const navigate = useNavigate();
   const baseUrl = import.meta.env.VITE_APP_BASE_URL;
 
   async function handleDelete(_id) {
@@ -44,7 +41,7 @@ const CardProject = ({ title, description, link, _id, image, tag }) => {
       <a target="_blank" href={link}>
         <img
           className="rounded-lg h-48 w-full object-fill hover:scale-105 transition"
-          src={`${baseUrl}/${image}`}
+          src={image}
           alt=""
         />
       </a>
