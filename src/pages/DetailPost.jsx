@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { format } from "date-fns";
 import { Link } from "react-router-dom";
-import Cookies from "js-cookie";
 import { BackMenu } from "../components/BackMenu";
 import { Navbar } from "../components";
 
@@ -73,7 +72,6 @@ export default function DetailPost() {
   const [postInfo, setPostInfo] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const { id } = useParams();
-  const myCookie = Cookies.get("token");
 
   const baseurl = import.meta.env.VITE_APP_BASE_URL;
 
@@ -109,23 +107,21 @@ export default function DetailPost() {
             <>
               <BackMenu />
               <h1 className="text-2xl md:text-3xl mt-10 font-semibold text-center text-secondary md:w-[80%] md:leading-10 mx-auto">
-                {postInfo.title}
+                {postInfo?.title}
               </h1>
               <p className="mx-auto text-center mt-4 text-secondary">
-                {format(new Date(postInfo.createdAt), "d-MM-yyyy ")}
+                {format(new Date(postInfo?.createdAt), "d-MM-yyyy ")}
               </p>
-              <div className="text-center text-sm text-secondary my-4">
-                by @{postInfo.author.username}
-              </div>
+              <div className="text-center text-sm text-secondary my-4"></div>
               <figure className="relative">
                 <img
                   className="w-full max-h-[500px] object-cover"
                   loading="lazy"
-                  src={`${baseurl}/${postInfo.cover}`}
+                  src={`${baseurl}/${postInfo?.cover}`}
                   alt=""
                 />
                 <div className="absolute top-2 left-2 flex gap-2">
-                  {postInfo.categories?.map((cat, i) => {
+                  {postInfo?.categories?.map((cat, i) => {
                     return (
                       <p
                         key={i}
@@ -137,37 +133,11 @@ export default function DetailPost() {
                   })}
                 </div>
               </figure>
-              <div className="flex justify-between my-4">
-                {myCookie && (
-                  <div className="edit-row">
-                    <Link
-                      className="edit-btn"
-                      to={`/blog/edit/${postInfo._id}`}
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        strokeWidth={1.5}
-                        stroke="currentColor"
-                        className="w-6 h-6"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"
-                        />
-                      </svg>
-                    </Link>
-                  </div>
-                )}
-
-                {/* The button to open modal */}
-              </div>
+              <div className="flex justify-between my-4"></div>
 
               <div
                 className="text-[15px] leading-6 li"
-                dangerouslySetInnerHTML={{ __html: postInfo.content }}
+                dangerouslySetInnerHTML={{ __html: postInfo?.content }}
               />
             </>
           )}

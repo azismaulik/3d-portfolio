@@ -326,7 +326,7 @@ const projects = [
 const socials = [
   {
     img: github,
-    link: "https://instagram.com/azissmm_",
+    link: "https://github.com/azismaulik",
   },
   {
     img: instagram,
@@ -334,21 +334,11 @@ const socials = [
   },
   {
     img: linkedin,
-    link: "https://instagram.com/azissmm_",
+    link: "https://id.linkedin.com/in/azis-maulana-malik",
   },
 ];
 
 const category = ["website", "technology", "design"];
-
-// const blogs = [
-//   {
-//     name: "How to write a blog post",
-//     description: "",
-//     tags: [],
-//     image: blog,
-//     link: "https://www.notion.so/How-to-write-a-blog-post-ee0ee0ee0e0e4e0b0e0e0e0",
-//   },
-// ];
 
 export {
   services,

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { styles } from "../styles";
 import { navLinks } from "../constants";
 import { logo, menu, close } from "../assets";
-import Cookies from "js-cookie";
+
 import Progress from "../hooks/ProgressBar";
 import { useNavigate } from "react-router-dom";
 
@@ -14,14 +14,8 @@ const Navbar = () => {
 
   const navigate = useNavigate();
 
-  const myCookie = Cookies.get("token");
-
   const completion = Progress();
 
-  function logout() {
-    Cookies.remove("token");
-    window.location.reload();
-  }
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.scrollY;
@@ -92,42 +86,6 @@ const Navbar = () => {
           >
             <a href="/blog">Blog</a>
           </li>
-          {myCookie && (
-            <div className="dropdown dropdown-end">
-              <label tabIndex={0}>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  xmlnsXlink="http://www.w3.org/1999/xlink"
-                  viewBox="0 0 496 512"
-                  className="text-white w-8 cursor-pointer"
-                >
-                  <path
-                    d="M248 8C111 8 0 119 0 256s111 248 248 248s248-111 248-248S385 8 248 8zm0 96c48.6 0 88 39.4 88 88s-39.4 88-88 88s-88-39.4-88-88s39.4-88 88-88zm0 344c-58.7 0-111.3-26.6-146.5-68.2c18.8-35.4 55.6-59.8 98.5-59.8c2.4 0 4.8.4 7.1 1.1c13 4.2 26.6 6.9 40.9 6.9c14.3 0 28-2.7 40.9-6.9c2.3-.7 4.7-1.1 7.1-1.1c42.9 0 79.7 24.4 98.5 59.8C359.3 421.4 306.7 448 248 448z"
-                    fill="currentColor"
-                  ></path>
-                </svg>
-              </label>
-              <ul
-                tabIndex={0}
-                className="dropdown-content menu p-2 shadow bg-input rounded-box w-52 mt-2"
-              >
-                <li
-                  onClick={() => navigate("/admin")}
-                  className="text-white/80
-             hover:text-white text-sm font-medium cursor-pointer"
-                >
-                  <a>Admin</a>
-                </li>
-                <li
-                  onClick={logout}
-                  className="text-white/80
-             hover:text-white text-sm font-medium cursor-pointer"
-                >
-                  <a>Logout</a>
-                </li>
-              </ul>
-            </div>
-          )}
         </ul>
 
         <div className="md:hidden flex flex-1 justify-end items-center">
@@ -170,15 +128,6 @@ const Navbar = () => {
               >
                 <a href="/blog">blog</a>
               </li>
-              {myCookie && (
-                <li
-                  onClick={logout}
-                  className="text-white
-             hover:text-white text-[18px] font-medium cursor-pointer"
-                >
-                  <a>Logout</a>
-                </li>
-              )}
             </ul>
           </div>
         </div>
